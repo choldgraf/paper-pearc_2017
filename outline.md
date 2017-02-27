@@ -76,7 +76,10 @@ Outline
     * The course requires an allocation (credits) in order to be run. This is usually not difficult to apply for but again the process can be opaque for new users.
     * Docker is still not intuitive and has a steep learning curve. However it is relatively straightforward to do things following simple instructions as long as they exist.
   * For the students
-    * Because students weren't using their own laptops, it adds an extra step in order to port course materials to their own computers after the class, if they wish to. (however, a counter to this is that they now have a better working knowledge of what it's like to work on a cluster)
+    * Because students didn’t install software on their laptops, it adds an extra step after the workshop in order to run the course materials on their own computers after the class, if they wish to. In a sense, this is not an “extra step”, but merely a step that gets moved after introducing the material instead of forcing the “installfest” step to happen at the start or before. At the end of the workshop, if students want to use the software, a portion of the time could be dedicated to:
+       * post-teaching “installfest” of software on the student’s own laptop
+       * installation of Docker on the laptop and instructions to run it on their laptop
+       * applying for individual allocation and instructions on how to use the cloud platform.
 * Wrap up
   * Broad statement about how technology offers opportunities to improve the way we learn how to do science, particularly in data analysis.
   * However, it will be important to build tools that are user-friendly and don't require sysadmin-level knolwedge in order to use.
