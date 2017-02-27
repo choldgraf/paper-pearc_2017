@@ -50,9 +50,9 @@ Outline
   * A quick description of our bootcamp, from a high level
     * Instructors doing development within Docker
     * Docker images being built and linked to a repository + data
-    * Those images being hosted on a cluster
-    * Students getting an IP address to interact w/ the cluster
-    * Instructors running materials from the cluster
+    * Those images being hosted on cloud platform
+    * Students getting an IP address to interact w/ the cloud platform
+    * Instructors running materials from the cloud platform
     * IP addresses persist for days after the bootcamp
     * The Docker + repo persist in time and are easily reproducible w/ the right tools 
   * The technology that let this happen
@@ -64,14 +64,14 @@ Outline
       * Instructors were also developing in this environment, which guaranteed that everything would "just work" in practice.
     * Consistency and control
       * Because students were all operating on the same computational platform, they had equal experiences in speed and operability.
-      * In addition, using the XSEDE cluster gave the instructors full control over the environments of students. If we wanted to change files, update scripts, etc, this could be done on the backend.
+      * In addition, using the XSEDE Jetstream cloud platform gave the instructors full control over the environments of students. If we wanted to change files, update scripts, etc, this could be done on the backend.
       * Because the full computing environment is provided with the class materials (as a dockerfile), future users could replicate the exact experience that the students had.
-      * In addition, the XSEDE cluster allowed us to keep course materials available for many days after the course was over, which lets students continue experimenting after the class is finished.
+      * In addition, the XSEDE cloud allowed us to keep course materials available for many days after the course was over, which lets students continue experimenting after the class is finished.
       * This course also resulted in a docker image that could be further built upon for new classes, or modified for specific applications.
 * Challenges in this approach / areas for further development
   * For the instructors
-    * Using a cluster requires knowledge of which cluster environments are available, and how to utilize them. Need more materials and institutional knowledge of how to get time on the clusters. Also need improvements in ease-of-use for the clusters themselves. Minimize barriers to entry for users.
-    * The course requires credits in order to be run on a cluster. This is usually not difficult to apply for but again the process can be opaque for new users.
+    * Using a cloud platform requires knowledge of which cloud environments are available, and how to utilize them. Need more materials and institutional knowledge of how to get time on the cloud platforms. Also need improvements in ease-of-use for the cloud platforms themselves. Minimize barriers to entry for users.
+    * The course requires an allocation (credits) in order to be run. This is usually not difficult to apply for but again the process can be opaque for new users.
     * Docker is still not intuitive and has a steep learning curve. However it is relatively straightforward to do things following simple instructions as long as they exist.
   * For the students
     * Because students weren't using their own laptops, it adds an extra step in order to port course materials to their own computers after the class, if they wish to. (however, a counter to this is that they now have a better working knowledge of what it's like to work on a cluster)
