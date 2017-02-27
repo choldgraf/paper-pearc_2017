@@ -49,6 +49,8 @@ Outline
 * Using technology to improve this process
   * A quick description of our bootcamp, from a high level
     * Instructors doing development within Docker
+    * Re-use curated Docker image from Jupyter team as a starting point
+    * Customize Docker image with workshop-specific software requirements
     * Docker images being built and linked to a repository + data
     * Those images being hosted on cloud platform
     * Students getting an IP address to interact w/ the cloud platform
