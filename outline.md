@@ -58,7 +58,10 @@ Outline
     * IP addresses persist for days after the bootcamp
     * The Docker + repo persist in time and are easily reproducible w/ the right tools 
   * The technology that let this happen
-    * ###AARON### can insert his magician-like knowledge of the tech here
+    * XSEDE Jetstream cloud platform
+    * Docker install scripts for Jetstream Ubuntu image
+    * Working out network / guestwifi issues for remote server access from campus network
+    * Configuration of Jupyter notebook with secure remote access to prevent unauthorized use
   * Benefits of this approach over the traditional approach
     * Reliability and Robustness
       * There were no startup costs on the day-of. Students only needed a web browser to have all the materials needed.
