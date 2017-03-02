@@ -1,5 +1,61 @@
 \section{Introduction}
 
-Where we introduce what we did
+Over the last several years, there has been a growing interest in learning
+outside of the traditional classroom setting. Whether it is because departments
+do not offer classes in a certain area, or because the format of semester-long
+classes does not mesh well with the topics covered, there is a demand for new
+approaches to teaching the skills and ideas needed to do science. One common way
+to teach new skills is a short, time-bounded learning event, such as a bootcamp
+or short-course. These attempt to compress several topics into an intensive
+learning session that is usually held over one or several days.
 
-Including some citation \cite{Lamport:LaTeX}
+These kinds of time-bounded bootcamps offer many advantages for learning over
+longer and less-frequent courses. For example, they allow the students to focus
+entirely one one topic for an extended period of time. This can be particularly
+useful for material that demands a ``deeper dive'' and intensive working. It is
+also particularly useful for topics that attempt to jointly cover both
+conceptual material and more ``hands-on'' material, because the increased time
+leaves more room for experimentation, discussion, and active learning. Finally,
+the opt-in nature of these courses often ensures that students are more
+motivated to learn, and their proximity both to one another as well as to the
+instructors makes for a good learning environment.
+
+A common event of this nature often follows the same rough formula. First,
+instructors develop materials on their own computers, perhaps eventually sharing
+them together in the same github repository. On the days preceding the event,
+instructors send links to github repositories, as well as instructions for how
+to download the proper packages and computing environments. On the day of,
+instructors assume that students have already figured out how to install this
+material on their computers, or often hold mini ``startup'' sessions that assist
+students that have problems in getting their environments set up. During the
+bootcamp, material is covered that was developed using the instructor computers,
+meaning that differences in computing power, memory, etc will cause some
+students to have failed kernels or exceptionally slow execution. Finally,
+students are then sent home with their newly-acquired knowledge and all course
+materials they used during the class. This has the benefit of being immediately
+usable outside of class (assuming that course materials were able to run during
+class). Course materials generally remain on github, though they have a
+relatively high barrier to entry for new students to discover because of the
+aforementioned environment setup costs.
+
+These types of courses also offer unique challenges in effectively teaching
+students. Because these courses emphasize hands-on learning in which students
+perform interact with material on their own, the course experience becomes
+heavily-dependent on the ability of each student to get started in the first
+place. In addition, asking students to run material on their own hardware limits
+and adds variability to the types of computations that can be covered in the
+class. Finally, because interacting with course materials requires installing
+many pieces of custom software, it is rare for course materials to be
+re-utilized by new users after the course has completed.
+
+One solution for handling these challenges is to offload the challenge of
+student-specific hardware onto a shared cloud computing platform. This approach
+standardizes the experience of each student by allowing them access to a single
+online resource for the duration of the class. This article covers a recent
+attempt at using advanced cyberinfrastructure in order to hold a day-long
+bootcamp in machine learning at the University of California in San Francisco.
+We will cover the technological advancements necessary in order to host course
+materials online and make them available to students, as well as cover the
+challenges faced in implementing this course setup effectively.
+
+\ariel{This is here now just so stuff doesn't break on build:} Including some citation \cite{Lamport:LaTeX}

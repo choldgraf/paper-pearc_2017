@@ -1,0 +1,93 @@
+\section{Methods and technical infrastructure}
+
+*** THIS SECTION I'M TREATING AS METHODS-Y, IT SHOULD HAVE AS MUCH DETAIL AS POSSIBLE***
+
+
+This section describes the Advanced Cyberinfrastructure (ACI) support that made this workshop possible, and highlights reusable and shareable patterns to build on for future work.
+
+\subsection{Computational resources}
+
+The Jetstream cloud platform provided the computational resources for the
+workshop. Jetstream’s core capabilities include the ability to create
+interactive Virtual Machines (VMs), access to remote desktops through a web
+browser, and publishing VMs with a DOI. Jetstream is attractive to communities
+who have not been users of traditional HPC systems, but who would benefit from
+advanced computational capabilities.
+
+*** DETAILED DIAGRAM OF HARDWARE + SOFTWARE ***
+
+Access to Jetstream is available to researchers at no cost through the
+NSF-funded XSEDE (Extreme Science and Engineering Discovery Environment) project
+which offers a portfolio of supercomputers and high-end visualization and
+data-analysis resources across the country to address increasingly diverse
+scientific and engineering challenges.
+
+To obtain access, a qualified PI writes a resource justification and submits an
+allocation request. To help speed up the process of choosing and obtaining
+access to the resource, many campuses have local XSEDE Campus Champions who can
+facilitate quick access and help prepare an allocation request.
+
+For the neuroimaging workshop, the local Campus Champion worked with BIDS and
+eScience data scientists to prepare an Education Allocation request. Below are
+some key excerpts from the 1-page allocation request, which you can read in full
+from the list of example allocation requests:
+
+50 Virtual Machines running simultaneously (40 students + 5 instructors +
+test/spare/debug VMs) Each VM will need to be a: Jetstream m1.medium VM (6
+vCPUs, 16GB RAM, 60GB Storage) Each VM will need an external IP address so
+students can connect remotely with a web browser to a Jupyter Notebook running
+on the machine We are requesting 10,000SUs in total. The technology we used to
+deploy the workshop in addition to the Jetstream cloud platform includes Docker,
+Dockerhub, and the docker-stacks maintained by the Jupyter project.
+
+\subsection{Development and environment control}
+
+Each of the instructors initially used their own laptops to develop Jupyter
+Notebook-based tutorials on computer vision and machine learning for
+neuroscience, using state-of-the-art deep learning methods and software such as
+Tensorflow and scikit-learn.
+
+Research IT staff worked with BIDS and eScience data scientists to build a
+customized container from the Jupyter project’s datascience-notebook image. This
+provides a pre-configured Jupyter Notebook 4.3.x; Conda Python 3.x and Python
+2.7.x environments; and several common libraries including: pandas, matplotlib,
+scipy, seaborn, scikit-learn, and scikit-image. Additional neuroscience-specific
+packages were included such as Dipy for diffusion magnetic resonance imaging
+(dMRI) analysis.
+
+This customized container ensured that each student had an identical environment
+on the day of the workshop, including all required software dependencies. The
+container made it possible for each participant to easily run the software
+without installing each of the components, often a lengthy and error-prone
+process at the start of many workshops. The container can also be used as a
+snapshot-in-time or a “time capsule” so the software is preserved for future
+use. Months or years for now it is possible to re-run the notebooks again, even
+if external software packages and dependencies have changed.
+
+The container image was pushed to https://hub.docker.com/ which provides a
+centralized resource for container image discovery, distribution and change
+management, user and team collaboration, and workflow automation.
+
+\subsubsection{Putting it together}
+
+While it is possible to download and run a customized container directly on a
+participant’s laptop, the instructors wanted to simplify the workshop
+experience. A Docker container for each participant was therefore provisioned to
+a virtual machine (VM) running remotely on the XSEDE Jetstream cloud platform.
+This allowed instructors to dive directly into the material, without a
+download-and-install step. The participant only needed to connect to their
+assigned IP address and type in a password provided on the whiteboard.
+
+After the workshop the participants were allowed to continue accessing their
+notebook on the Jetstream platform for a limited time using the Education
+Allocation for the workshop. After the allocation expired, each individual could
+either:
+
+\begin{itemize}
+
+\item install Docker for Mac or Docker for Windows to download and run the
+container on their own laptop
+
+\item apply for their own Startup and Research Allocations on XSEDE Jetstream
+
+\end{itemize}
