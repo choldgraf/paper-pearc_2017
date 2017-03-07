@@ -51,17 +51,19 @@ any modifications of it) persisted over time and between computing sessions.
 \item {\bf Environment distribution}: As all development of the course was
 performed in Docker containers, it ensured that all course materials could run
 on any computing architecture that could host such a Docker image. In the day
-before the class, this image was deployed to several instances being run on a
-cloud computing platform called XSEDE (see section \ref{sec:methods}). A single
-IP was generated for each instance - one for each student - and was sent out the
-morning of the event. Students only needed to click on their respective IP
-address, and they were instantly taken to a live Jupyter notebook contained
-within their XSEDE computing environment. This notebook had all course
-materials, as well as access to the data, software packages, and live python
-kernels needed to execute all of the course materials. In addition, this
-environment persisted several days after the class was finished in order to
-allow students to continue interacting with materials, or to port their work
-onto their personal computers.
+before the class, this image was deployed to several Virtual Machine (VM)
+instances being run on the Jetstream cloud computing platform
+\cite{Stewart2014Jestream} available through the Extreme Science and Engineering
+Discovery Environment (XSEDE) \cite{Towns2014XSEDE}  (see section
+\ref{sec:methods}). A single IP was generated for each instance - one for each
+student - and was sent out the morning of the event. Students only needed to
+click on their respective IP address, and they were instantly taken to a live
+Jupyter notebook contained within their XSEDE Jetstream computing
+environment. This notebook had all course materials, as well as access to the
+data, software packages, and live python kernels needed to execute all of the
+course materials. In addition, this environment persisted several days after the
+class was finished in order to allow students to continue interacting with
+materials, or to port their work onto their personal computers.
 
 \end{enumerate}
 
@@ -77,7 +79,7 @@ challenges that were introduced and how they might be addressed in the future.
 
 \subsubsection{Benefits of a traditional course structure}
 
-The messiness of asking students to do all work on their own machines has one
+The challenge of asking students to do all work on their own machines has one
 primary benefit: they are operating in the computing environment that they
 likely use on a daily basis. While it is common for frustrations to pop up
 during installation and execution of course materials, these also serve as
@@ -116,6 +118,13 @@ be frozen relatively early. It is complicated for instructors to update
 materials during the workshop unless they want to lead the class through a joint
 session on pulling from Github.
 
+Course materials that are developed and tested only on the instructor’s laptops
+may have software dependencies or other assumptions that are exposed too late,
+during the workshop itself, that may lead to complications on the student’s
+laptops. This may be further compounded by differences in laptop and software
+configuration across multiple instructors with multually incompatible
+requirements.
+
 \subsubsection{Benefits of the cloud-computing approach}
 
 As discussed above, the key benefit of using a cloud-computing approach is
@@ -123,27 +132,34 @@ easily standardizing the experience of each student via a shared online
 resource. Because computing environments are initialized automatically with
 Docker and the XSEDE cluster, students incur virtually zero startup cost before
 interacting with the course materials. They only need a web browser in order to
-run Jupyter notebooks. \ariel{The following sentence abruptly changes tense:} In
-addition, this ensured that all students had a ``clean'' computing environment -
-they had access only to the data, scripts, and packages that were required for
-the class.
+run Jupyter notebooks. In addition, this ensures that all students start from a
+``clean'' computing environment - they had access only to the data, scripts, and
+packages that were required for the class.
 
 This approach afforded many benefits for instructors and course development as
 well. By utilizing Docker for student deployments, the instructors knew the
 computational resources that would be available to the students. As such, they
 could scale the demands of their scripts accordingly, such that everything would
 ``just work'' once dozens of students simultaneously attempted to run their
-code. By hosting student materials on the cloud, it also allowed instructors
-access to these computing environments during the class itself. Any updates,
-changes to data, or new scripts could be pushed silently via the XSEDE platform,
-which reduced the difficulties associated with asking students to download new
-data. This all served to allow instructors and students to focus on the primary
-goal of the event: covering course material and getting students familiar with
-the domain-specific analysis.
+code. Because each student’s computing environment was provisioned in its own VM
+instance in the cloud, this ensured that each student would receive the full
+computational power available to them, whereas in a traditional shared server
+environment the students all share the resources of a single machine and may
+interfere with each other if they launch demanding computations at the same
+time.
 
-An extra benefit of this approach lies in the ability to perfectly replicate the
-course on any new computing environment. With a few Docker commands, it would be
-possible to recreate the user experience on a person's laptop, provided that
+By hosting student materials on the cloud, it also allowed instructors
+access to these computing environments during the class itself. Any updates,
+changes to data, or new scripts could be pushed silently via the XSEDE Jetstream
+platform, which reduced the difficulties associated with asking students to
+download new data. This all served to allow instructors and students to focus on
+the primary goal of the event: covering course material and getting students
+familiar with the domain-specific analysis.
+
+An extra benefit of this approach enables “mobility of compute” and lies in the
+ability to perfectly replicate the course on any new computing environment. With
+a few Docker commands, it would be possible to recreate the user experience on
+another cloud computing environment or even a person's laptop, provided that
 they had the hardware capacity to handle course computations and a minimal
 understanding of the Docker environment. This adds to the reproducibility of the
 course, and lowers the barrier to entry for users to discover and interact with
@@ -166,20 +182,34 @@ their availability. While there are many available resources to gain
 understanding of cloud-computing infrastructure, it is often idiosyncratic and
 inaccessible for novice users. In our case, instructors had to work with a
 campus cyberinfrastructure expert in order to set up the Docker images within
-the XSEDE environment. In addition, significant development had to go into
-creating and debugging the Docker images, particularly early on in the
+the XSEDE Jetstream environment. In addition, significant development had to go
+into creating and debugging the Docker images, particularly early on in the
 development cycle of the class. In the future, it will be important to provide
 practical guides in interfacing with campus cloud computing architecture, as
 well as a well-explained workflow for how to leverage these resources in
 teaching.
 
 \item {\bf Expenses associated with cloud computing}: Another challenge of using
-cloud computing is the fact computation time incurs a financial cost.
-Fortunately this is a relatively minimal cost, and many cloud computing
-platforms (particularly those associated with universities) are willing to
-provide cloud credits for educational purposes. For situations where instructors
-do not have access to free credits for cloud computing, universities should
-provide modest grants to pay for these computing resources.
+commercial cloud computing is the fact computation time incurs a cost— either
+financial or in the form of an allocation of Service Units (SUs) in the case of
+XSEDE. Fortunately in our experience the XSEDE allocation process has a quick
+turnaround for Jetstream Education Allocations with a limit up to 50,000 SUs,
+however the turnaround times are not documented transparently, so it might not
+be obvious to workshop coordinations without the help of the local XSEDE campus
+champion.
+
+Additionally, because the Education Allocation is not guaranteed, a backup plan
+is essential if the award is not granted. For our course, the equivalent cost
+for our setup on a commercial cloud provider would be approximately \$600-700.
+Many cloud computing platforms (particularly those associated with universities)
+are willing to provide cloud credits for educational purposes. However, as with
+the XSEDE allocations the cloud credits are not guaranteed and sometimes have
+much longer turnaround times.
+
+For situations where instructors do not have access to free credits for
+commercial cloud computing, universities should provide modest grants to pay for
+these resources \aaron{or provide Jetstream-like cloud computing resources at the
+campus-level}.
 
 \item {\bf Knowledge in container technology}: While containerization has become
 commonplace in industry, it is still rarely used in academic research. Use-cases

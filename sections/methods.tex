@@ -33,13 +33,23 @@ eScience data scientists to prepare an Education Allocation request. Below are
 some key excerpts from the 1-page allocation request, which you can read in full
 from the list of example allocation requests \footnote{https://portal.xsede.org/documents/10308/29438/Jetstream+Education+Allocation+request+-+Sample/28517ffe-79fa-4e3f-98c9-b64f126a1e6b}:
 
-50 Virtual Machines running simultaneously (40 students + 5 instructors +
-test/spare/debug VMs) Each VM will need to be a: Jetstream m1.medium VM (6
-vCPUs, 16GB RAM, 60GB Storage) Each VM will need an external IP address so
-students can connect remotely with a web browser to a Jupyter Notebook running
-on the machine We are requesting 10,000SUs in total. \ariel{Is this still part of the allocation request? It's ambiguous: } The technology we used to
-deploy the workshop in addition to the Jetstream cloud platform includes Docker,
-Dockerhub, and the docker-stacks maintained by the Jupyter project.
+\begin(itemize)
+\item 50 Virtual Machines running simultaneously (40 students + 5 instructors +
+test/spare/debug VMs)
+\item Each VM will need to be a: Jetstream m1.medium VM (6 vCPUs, 16GB RAM, 60GB
+  Storage)
+\item Each VM will need an external IP address so students can connect remotely
+  with a web browser to a Jupyter Notebook running on the machine
+\item We are requesting 10,000SUs in total.
+\end(itemize)
+
+\ariel{Is this still part of the allocation request? It's ambiguous: }
+\aaron{Ariel, I reforatted this as a bulleted list so hopefully this works as
+  the excerpt mentioned above?}
+
+The technology we used to deploy the workshop in addition to the Jetstream cloud
+platform includes Docker, Dockerhub, and the datascience-notebook docker-stacks
+maintained by the Jupyter project. (\url{https://github.com/jupyter/docker-stacks/})
 
 \subsection{Development and environment control}
 
@@ -73,15 +83,61 @@ automation.
 \subsubsection{Putting it together}
 
 \ariel{This section reads a bit strangely. We already explained most of this
-before}
+before} \aaron{Ariel, how does this section read now? I’ve fleshed this part
+out so hopefully the additional details help bring this section together.}
+
+On the day of the workshop, the 50 Jetstream virtual machines (VMs) were
+deployed by hand using Jetstream’s Atmosphere web interface
+(\url{http://www.cyverse.org/atmosphere}). While it is possible to create
+scripts for a fully automated deployment using the low-level OpenStack API that
+Jetstream is built on, we decided that the additional complexity was not
+desirable. Using the Atmosphere web inteface is a quick and simple 6-step
+process that allowed us to manually start the deployment of all 50 instances in
+just a few minutes. At a high-level the process is:
+
+\begin{enumerate}
+\item Select the pre-defined VM image: Ubuntu 14.04.3 Development GUI
+\item Choose instance size: m1.medium VM (6 vCPUs, 16GB RAM, 60GB
+  Storage)
+\item Click “Advanced Options”
+\item Select deployment script from github URL for the workshop
+\item Click “Continue to Launch”
+\item Click “Launch Instance”
+\end{enumerate}
+
+The deployment script from github URL for the workshop is a simple bash script
+that will be run when the VM starts. It installs Docker on the VM, pulls the
+workshop Docker image from DockerHub, downloads all the data needed for the
+examples, and starts the Docker container running the Jupyter notebook on a
+standard web port (80/443).
+
+It is worth noting a few issues related to networking and security that must be
+addressed for any scenario involving remote computing (whether in a cloud
+computing environment or traditional server environment).
+
+When running Jupyter Notebooks on a laptop, they typically listen on network
+port 8888 and a user connects via their web browser to
+\url{http://localhost:8080}. In this configuration, the port is not accessible
+to a remote attacker. Whereas in a server environment, remote access is a key
+feeature, so it requires running the Jupyter notebook in a secure mode requiring
+a token or a password. Thankfully, the Jupyter team has configured the
+docker-stacks to run in a secure mode by default.
+
+For the workshop we chose a single password to deploy to each of the Jupyter VM
+instances and wrote the password on the whiteboard for the participants. We also
+copied the IP addresses of each machine into a Google spreadsheet, assigned to
+each of the participants.
 
 While it is possible to download and run a customized container directly on a
 participant’s laptop, the instructors wanted to simplify the workshop
-experience. A Docker container for each participant was therefore provisioned to
-a virtual machine (VM) running remotely on the XSEDE Jetstream cloud platform.
-This allowed instructors to dive directly into the material, without a
-download-and-install step. The participant only needed to connect to their
-assigned IP address and type in a password provided on the whiteboard.
+experience for the students.
+
+A Docker container for each participant was therefore provisioned to
+a virtual machine (VM) for each student and instructor running remotely on the
+XSEDE Jetstream cloud platform. This allowed instructors to dive directly into
+the material, without a download-and-install step. The participant only needed
+to connect to their assigned IP address and type in a password provided on the
+whiteboard.
 
 After the workshop the participants were allowed to continue accessing their
 notebook on the Jetstream platform for a limited time using the Education
