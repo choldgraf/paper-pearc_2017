@@ -133,7 +133,7 @@ easily standardizing the experience of each student via a shared online
 resource. Because computing environments are initialized automatically with
 Docker and the XSEDE cluster, students incur virtually zero startup cost before
 interacting with the course materials. They only need a web browser in order to
-run Jupyter notebooks. In addition, this ensures that all students start from a
+run Jupyter notebooks. In addition, this ensures that all students start with a
 ``clean'' computing environment - they had access only to the data, scripts, and
 packages that were required for the class.
 
@@ -142,30 +142,30 @@ well. By utilizing Docker for student deployments, the instructors knew the
 computational resources that would be available to the students. As such, they
 could scale the demands of their scripts accordingly, such that everything would
 ``just work'' once dozens of students simultaneously attempted to run their
-code. Because each student’s computing environment was provisioned in its own VM
+code. Because each student's computing environment was provisioned in its own VM
 instance in the cloud, this ensured that each student would receive the full
 computational power available to them, whereas in a traditional shared server
 environment the students all share the resources of a single machine and may
 interfere with each other if they launch demanding computations at the same
 time.
 
-By hosting student materials on the cloud, it also allowed instructors
-access to these computing environments during the class itself. Any updates,
+By hosting student materials on the cloud, this approach also allowed instructors
+to access these computing environments during the class itself. Any updates,
 changes to data, or new scripts could be pushed silently via the XSEDE Jetstream
 platform, which reduced the difficulties associated with asking students to
 download new data. This all served to allow instructors and students to focus on
 the primary goal of the event: covering course material and getting students
 familiar with the domain-specific analysis.
 
-An extra benefit of this approach enables “mobility of compute” and lies in the
+An extra benefit of this approach enables "mobility of compute" and lies in the
 ability to perfectly replicate the course on any new computing environment. With
-a few Docker commands, it would be possible to recreate the user experience on
-another cloud computing environment or even a person's laptop, provided that
+a few Docker commands, it is be possible to recreate the user experience on
+another cloud-computing environment or even a person's laptop, provided that
 they had the hardware capacity to handle course computations and a minimal
 understanding of the Docker environment. This adds to the reproducibility of the
 course, and lowers the barrier to entry for users to discover and interact with
 the materials in the future. It also makes it easier for instructors to build
-new materials off of the course Docker images, which encourages collaboration
+new materials based on the Docker images of the course, which encourages collaboration
 and reduces the tendency for instructors to repeat efforts.
 
 \subsubsection{Challenges of the cloud-computing approach and areas for improvement}
