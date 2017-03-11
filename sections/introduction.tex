@@ -15,9 +15,11 @@ longer and less-frequent courses. For example, they allow the students to focus
 entirely on one topic for an extended period of time. This can be particularly
 useful for material that demands a ``deeper dive'' and intensive working. It is
 also particularly useful for topics that attempt to jointly cover both
-conceptual material and more ``hands-on'' tasks, because the increased time
+conceptual material and more ``hands-on'' tasks, because the condensed time
 leaves more room for experimentation, discussion, and active learning
-\citep{Bransford2000-lu, Papert1980-fh}. Finally, the opt-in nature of these
+\citep{Bransford2000-lu, Papert1980-fh}. In addition, due to the interactive
+setup students are more likely to work collaboratively and learn from each
+other. Finally, the opt-in nature of these
 courses often ensures that students are more motivated to learn, and their
 proximity both to one another as well as to the instructors makes for a good
 learning environment.
@@ -39,7 +41,8 @@ heavily dependent on the ability of each student to get started in the first
 place. Since instructional materials were developed on instructor computers,
 differences between instructors' and students' computers (e.g., memory
 available, operating system, etc.) might have hard-to-predict consequences, such
-as slow execution, or even complete failure to execute.
+as slow execution, or even complete failure to execute (e.g. because of the missing software
+dependencies that are not installed in students' computers).
 
 One solution to mitigate many of these challenges is to offload the issue of
 student-specific hardware onto a shared cloud computing platform. This approach
@@ -49,8 +52,9 @@ online resource for the duration of the class.
 This article covers our recent experience implementing this approach, using
 advanced cyberinfrastructure to teach a day-long bootcamp in machine learning at
 the University of California in San Francisco. This paper describes the
-technical tool-chain and process we used to host course materials online and
-make them available for students to run through a browser on their own laptops,
+technical tool-chain and processes that we used in designing this course. This
+unique design includes hosting the course materials online and
+making them available for students to run through a browser on their own laptops,
 with no additional installation required. We will discuss the challenges in
 implementing this course setup effectively, and discuss its merits and
 drawbacks.
