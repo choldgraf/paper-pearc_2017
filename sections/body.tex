@@ -1,4 +1,4 @@
-\section{The Body of The Paper}
+\section{Results}
 
 \subsection{Course overview and development}
 
@@ -16,27 +16,26 @@ machine learning techniques (e.g., deep learning methods using Caffe
 introduction to scikit-learn \cite{Pedregosa2012-dm}).
 
 *** IMAGE OF JUPYTER ENVIRONMENT IN CLASS ***
-Ariel showing an jupyter notebook in class: \url{https://www.dropbox.com/s/tfcymiqhh5nlvkm/ariel_ucsf2017.jpg?dl=0}
 
-All course materials were hosted via a shared online computing platform, and
-students accessed this platform via a unique URL. This made it possible to
-standardize the computing environment across both students and instructors,
-and minimized the effort needed to get students started with
-the material. In order to make course materials accessible in a live, online
-computing environment, the following considerations were taken:
+All course materials were hosted via a shared online computing platform.
+Students accessed this platform via the web browsers on their own computers.
+This made it possible to standardize the computing environment across both
+students and instructors, and minimized the effort needed to get students
+started with the material. In order to make course materials accessible in a
+live, online computing environment, the following considerations were taken:
 
 \begin{enumerate}
 
 \item {\bf Software and computing environment}: First, a Docker image
 \cite{merkel2014docker} was created with the computational restrictions and
-computing environment that would match what would be available on the cluster.
-Instructors used a shared instance of this Docker image while they developed
-sections of the tutorial independently. They used a shared Github repository to
-host each section of the bootcamp, and pushed their materials as separate
-folders in this repository. As new packages were needed in order to cover
-particular topics, the base Docker image was updated with added dependencies. As
-a result, by the end of course development there was a single Docker image with
-all software tools needed to complete the course.
+computing environment that would match what would be available on the Jetstream
+instances we would provision. Instructors used a shared instance of this Docker
+image while they developed sections of the tutorial independently. They used a
+shared Github repository to host each section of the bootcamp, and pushed their
+materials as separate folders in this repository. As new packages were needed in
+order to cover particular topics, the base Docker image was updated with added
+dependencies. As a result, by the end of course development there was a single
+Docker image with all software tools needed to complete the course.
 
 \item {\bf Data management}: Some bootcamp-style events require data to use in
 the examples. For realistic research examples, the data can be cumbersome to
@@ -53,18 +52,18 @@ own computing environments, this data (and any modifications of it) persisted
 over time and between computing sessions.
 
 \item {\bf Environment distribution}: The development of the course material was
-performed in Docker containers. This ensured that all the course materials could run
-on any computing architecture that could host such a Docker image. In the day
-before the class, this image was deployed to several Virtual Machine (VM)
+performed in Docker containers. This ensured that all the course materials could
+run on any computing architecture that could host such a Docker image. In the
+day before the class, this image was deployed to several Virtual Machine (VM)
 instances being run on the Jetstream cloud computing platform
-\cite{Stewart2014Jestream} available through the Extreme Science and Engineering
-Discovery Environment (XSEDE) \cite{Towns2014XSEDE}  (see section
+\cite{Stewart2015Jetstream} available through the Extreme Science and
+Engineering Discovery Environment (XSEDE) \cite{Towns2014XSEDE}  (see section
 \ref{sec:methods}). A single IP address was generated for each instance - one
 for each student - and was sent out the morning of the event. Students only
-needed to click on their respective IP address, and they were instantly taken
-to a live Jupyter notebook contained within their XSEDE Jetstream computing
+needed to click on their respective IP address, and they were instantly taken to
+a live Jupyter notebook contained within their XSEDE Jetstream computing
 environment. This notebook had all course materials, as well as access to the
-data, software packages, and live python kernels that were needed to execute the
+data, software packages, and live Python kernels that were needed to execute the
 course materials. In addition, this environment persisted several days after the
 class was finished in order to allow students to continue interacting with the
 material, or to port their work onto their personal computers.
@@ -79,9 +78,11 @@ material, or to port their work onto their personal computers.
 
 This section covers some of the main benefits and drawbacks of the cloud
 computing approach towards bootcamp-style events. First we will cover primary
-benefits of a traditional bootcamp event, next we will discuss drawbacks and how
-these are addressed by using cloud infrastructure. Finally we will discuss new
-challenges that were introduced and how they might be addressed in the future.
+benefits of a 'traditional' bootcamp event (one in which participants are asked
+to install the software on their own computers). Next we will discuss drawbacks
+and how these are addressed by using cloud infrastructure. Finally we will
+discuss new challenges that were introduced and how they might be addressed in
+the future.
 
 \subsubsection{Benefits of a traditional bootcamp approach}
 
@@ -113,9 +114,7 @@ can be given by the instructor. For example, this may limit the computational
 load used to perform any analyses in class. This variability also has
 implications for equality and discrimination, as students without access to
 laptops with the proper hardware for completing the course are often frustrated
-and unable to learn as effectively. <XXX CITATION>
-\cite{clark-proc-scipy-2014}\aaron{I am a co-author on this paper, so we should
-probably find other papers to cite, as well.}
+and unable to learn as effectively \cite{clark-proc-scipy-2014}.
 
 Another challenge with this approach is that instructors have limited control
 over the software experience of each student. For example, because operating
@@ -130,7 +129,7 @@ Course materials that are developed and tested only on the instructor's laptops
 may have software dependencies or other assumptions that are exposed too late,
 during the workshop itself, that may lead to complications on the student's
 laptops. This may be further compounded by differences in laptop and software
-configuration across multiple instructors with multually incompatible
+configuration across multiple instructors with mutually incompatible
 requirements. While learning how to deal with these conflicts is a valuable
 skill to learn, teaching these skills it is generally not the primary goal of
 these courses.
@@ -140,11 +139,11 @@ these courses.
 As discussed above, the key benefit of using a cloud-computing approach is
 easily standardizing the experience of each student via a shared online
 resource. Because computing environments are initialized automatically with
-Docker and the XSEDE cluster, students incur virtually zero startup cost before
-interacting with the course materials. They only need a web browser in order to
-run Jupyter notebooks. In addition, this ensures that all students start with a
-``clean'' computing environment - they had access only to the data, scripts, and
-packages that were required for the class.
+Docker and the XSEDE Jetstream cloud, students incur virtually zero startup cost
+before interacting with the course materials. They only need a web browser in
+order to run Jupyter notebooks. In addition, this ensures that all students
+start with a ``clean'' computing environment - they had access only to the data,
+scripts, and packages that were required for the class.
 
 This approach afforded many benefits for instructors and course development as
 well. By utilizing Docker for student deployments, the instructors knew the
@@ -198,8 +197,8 @@ development cycle of the class. In the future, it will be important to provide
 practical guides in interfacing with campus cloud computing architecture, as
 well as a well-explained workflow for how to leverage these resources in
 teaching. There is also opportunity for advances in software to mitigate this
-problem, such as using the JupyterHub \cite{XXXJUPYTERHUBREFERENCE} platform
-for managing user instances on a cluster deployment.
+problem, such as using the JupyterHub \cite{perez2015project} platform
+for managing user instances.
 
 \item {\bf Expenses associated with cloud computing}: Another challenge of using
 commercial cloud computing is that computation time incurs a cost, either
@@ -268,37 +267,38 @@ provided by their university (a practice that is becoming more and more common).
 
 \end{enumerate}
 
-\subsection{Next steps for improving the cluster-based bootcamp}:
+\subsection{Next steps for improving the cloud-based bootcamp}:
 
 With these considerations in mind, we recommend that the following tangible
-advancements in order to make this type of cluster-based bootcamp as effective
+advancements in order to make this type of cloud-based bootcamp as effective
 as possible
 
 \begin{enumerate}
 
 \item {\bf Technological improvements}: The largest technological hurdle we
 faced was in streamlining the connection between a Docker image and a
-cluster that can deploy many instances of this image automatically. As
-standards in cluster deployment platforms solidify, this approach would
-benefit from a software platform that requires only a Docker image (even
-better, only a github repository) as well as the credentials for a cluster
+cloud-based system that can deploy many instances of this image automatically.
+As standards in cloud-compute deployment platforms solidify, this approach would
+benefit from a software platform that requires only a Docker image (even better,
+only a Github repository) as well as the credentials for a cloud-based system
 that supports a common platform such as Kubernetes. The platform could then
 support giving a list of usernames / email addresses, and would automatically
-create cluster instances along with their corresponding IP addresses.
+create instances of the learning environment along with their corresponding IP
+addresses.
 
 \item {\bf Instructional improvements}: Regardless of any changes to hardware
 or software, a collection of instructional materials should be created that
 focuses on instructors without the technological know-how of a sys admin.
 Docker is complicated, but it can be effectively used by following simple,
-straightforward guides. In addition, clusters such as XSEDE still have
+straightforward guides. In addition, resources such as XSEDE still have
 much progress to be made on their instructional materials in order to
 streamline the onboarding process.
 
-\item {\bf Cost and payment opportunities}: While running student instances
-on a cluster is not a large amount of money for most class sizes, the cost
-of deploying a cluster-based bootcamp is still a significant energy barrier
-to many instructors. We recommend that universities provide small grants
-with fast turnarounds specifically to pay for computing time on
-university clusters for the purpose of teaching.
+\item {\bf Cost and payment opportunities}: While running student instances on a
+cloud-based resource is not a large amount of money for most class sizes, the
+cost of deploying a cloud-based bootcamp is still a significant energy barrier
+to many instructors. We recommend that universities provide small grants with
+fast turnarounds specifically to pay for computing time on university HPC
+clusters for the purpose of teaching.
 
 \end{enumerate}
