@@ -18,16 +18,17 @@ introduction to scikit-learn \cite{Pedregosa2012-dm}).
 *** IMAGE OF JUPYTER ENVIRONMENT IN CLASS ***
 Ariel showing an jupyter notebook in class: \url{https://www.dropbox.com/s/tfcymiqhh5nlvkm/ariel_ucsf2017.jpg?dl=0}
 
-All course materials were hosted via a shared online computing platform. This
-made it possible to standardize the computing environment across both students
-and instructors, and minimized the effort needed to get students started with
+All course materials were hosted via a shared online computing platform, and
+students accessed this platform via a unique URL. This made it possible to
+standardize the computing environment across both students and instructors,
+and minimized the effort needed to get students started with
 the material. In order to make course materials accessible in a live, online
 computing environment, the following considerations were taken:
 
 \begin{enumerate}
 
 \item {\bf Software and computing environment}: First, a Docker image
-\cite{merkel2014docker} was created with computational restrictions and a
+\cite{merkel2014docker} was created with the computational restrictions and
 computing environment that would match what would be available on the cluster.
 Instructors used a shared instance of this Docker image while they developed
 sections of the tutorial independently. They used a shared Github repository to
@@ -39,15 +40,17 @@ all software tools needed to complete the course.
 
 \item {\bf Data management}: Some bootcamp-style events require data to use in
 the examples. For realistic research examples, the data can be cumbersome to
-download and modify. This course covered a wide range of datasets including
-publicly-available functional magnetic resonance imaging (fMRI) data as well as
-images of cells collected from the human brain. Instructors used a script that
-fetched this data from online repositories, and then stored it in a common data
-folder on the user's computer. The Docker images were then configured such that
-this script would be run as soon as a new image was instantiated, ensuring that
-all data was pre-loaded onto the user's filesystem upon launch. In addition,
-because students had access to their own computing environments, this data (and
-any modifications of it) persisted over time and between computing sessions.
+download and modify (for example, if many students attempt to download the
+same file at once during class). This course covered a wide range of datasets
+including publicly-available functional magnetic resonance imaging (fMRI) data
+as well as images of cells collected from the human brain. Instructors used a
+script that fetched this data from online repositories, and then stored it in
+a common data folder on the user's computer. The Docker images were then
+configured such that this script would be run as soon as a new image was
+instantiated, ensuring that all data was pre-loaded onto the user's
+filesystem upon launch. In addition, because students had access to their
+own computing environments, this data (and any modifications of it) persisted
+over time and between computing sessions.
 
 \item {\bf Environment distribution}: The development of the course material was
 performed in Docker containers. This ensured that all the course materials could run
@@ -56,15 +59,17 @@ before the class, this image was deployed to several Virtual Machine (VM)
 instances being run on the Jetstream cloud computing platform
 \cite{Stewart2014Jestream} available through the Extreme Science and Engineering
 Discovery Environment (XSEDE) \cite{Towns2014XSEDE}  (see section
-\ref{sec:methods}). A single IP was generated for each instance - one for each
-student - and was sent out the morning of the event. Students only needed to
-click on their respective IP address, and they were instantly taken to a live
-Jupyter notebook contained within their XSEDE Jetstream computing
+\ref{sec:methods}). A single IP address was generated for each instance - one
+for each student - and was sent out the morning of the event. Students only
+needed to click on their respective IP address, and they were instantly taken
+to a live Jupyter notebook contained within their XSEDE Jetstream computing
 environment. This notebook had all course materials, as well as access to the
 data, software packages, and live python kernels that were needed to execute the
 course materials. In addition, this environment persisted several days after the
 class was finished in order to allow students to continue interacting with the
 material, or to port their work onto their personal computers.
+
+*** FIGURE OF FIRST WINDOW OPENED AFTER CLICKING THE IP ADDRESS? ***
 
 \end{enumerate}
 
@@ -102,13 +107,13 @@ successfully able to run on their laptops. For example, some students have
 difficulty setting up packages and environments, this costs time at the
 beginning of class and often creates interruptions throughout the day. In
 addition, some have pre-existing installations of software that may clash with
-new installations, or introduce version dependency clashes. Finally, because
+new installations, or introduce version dependency conflicts. Finally, because
 computational power varies across students, it limits the kind of tutorials that
 can be given by the instructor. For example, this may limit the computational
 load used to perform any analyses in class. This variability also has
 implications for equality and discrimination, as students without access to
 laptops with the proper hardware for completing the course are often frustrated
-and unable to learn as effectively.
+and unable to learn as effectively. <XXX CITATION>
 
 Another challenge with this approach is that instructors have limited control
 over the software experience of each student. For example, because operating
@@ -124,7 +129,9 @@ may have software dependencies or other assumptions that are exposed too late,
 during the workshop itself, that may lead to complications on the student's
 laptops. This may be further compounded by differences in laptop and software
 configuration across multiple instructors with multually incompatible
-requirements.
+requirements. While learning how to deal with these conflicts is a valuable
+skill to learn, teaching these skills it is generally not the primary goal of
+these courses. 
 
 \subsubsection{Benefits of the cloud-computing approach}
 
@@ -180,7 +187,7 @@ future iterations of this approach towards teaching.
 \item {\bf Knowledge in cloud-computing infrastructure}: The primary drawback of
 this approach is the necessity of knowledge in computing infrastructures and
 their availability. While there are many available resources to gain
-understanding of cloud-computing infrastructure, it is often idiosyncratic and
+understanding of cloud-computing infrastructure, they are often idiosyncratic and
 inaccessible for novice users. In our case, instructors had to work with a
 campus cyberinfrastructure expert in order to set up the Docker images within
 the XSEDE Jetstream environment. In addition, significant development had to go
@@ -188,7 +195,9 @@ into creating and debugging the Docker images, particularly early on in the
 development cycle of the class. In the future, it will be important to provide
 practical guides in interfacing with campus cloud computing architecture, as
 well as a well-explained workflow for how to leverage these resources in
-teaching.
+teaching. There is also opportunity for advances in software to mitigate this
+problem, such as using the JupyterHub \cite{XXXJUPYTERHUBREFERENCE} platform
+for managing user instances on a cluster deployment.
 
 \item {\bf Expenses associated with cloud computing}: Another challenge of using
 commercial cloud computing is that computation time incurs a cost, either
@@ -207,6 +216,15 @@ are willing to provide cloud credits for educational purposes. However, as with
 the XSEDE allocations the cloud credits are not guaranteed and sometimes have
 much longer turnaround times.
 
+***XXX
+Table?:
+                    Cost per student per hour
+Hardware setup 1
+Hardware setup 2
+Hardware setup 3
+etc
+***
+
 For situations where instructors do not have access to free credits for
 commercial cloud computing, universities should provide modest grants to pay for
 these resources or provide Jetstream-like cloud computing resources at the
@@ -222,7 +240,7 @@ learning how to deploy course materials for the first time. In order to improve
 the accessibility of this approach for new instructors, it will be crucial to
 minimize the effort required to set up a minimal computational environment with
 Docker. Fortunately the Jupyter base Docker image maintained by the Jupyter
-project provides a good starting point. But more efforts towards streamlining
+project provides a good starting point, but more efforts towards streamlining
 this process are needed.
 
 \item {\bf Migrating students from the cloud to their computers}: A final
@@ -232,7 +250,9 @@ all course materials are run in the cloud, another migration step would be
 needed to transfer the software and data to other, more familiar environments.
 Fortunately, it is straightforward to initialize the course Docker image with a
 few simple commands, but this can be a large impediment for a student who has
-just learned how to program. We recommend including guides specifically for
+just learned how to program.
+
+We recommend including guides specifically for
 students who wish to migrate their work onto their laptops, or holding special
 sessions to ``off-board'' students after the class is finished. This serves as a
 natural parralel to the ``install-fest'' that often happens at the
@@ -241,7 +261,40 @@ off-boarding process occurs after significant learning and experience in
 software and computing has been gained, potentially mitigating the frustration
 associated with migrating off of the cloud. Meanwhile, the experience also
 serves to familiarize students with the cloud-computing environment. As a result
-they may be poised to do their own work on cloud- computing environments
+they may be poised to do their own work on cloud-computing environments
 provided by their university (a practice that is becoming more and more common).
 
 \end{enumerate}
+
+\subsection{Next steps for improving the cluster-based bootcamp}:
+
+With these considerations in mind, we recommend that the following tangible
+advancements in order to make this type of cluster-based bootcamp as effective
+as possible
+
+\begin{enumerate}
+
+\item {\bf Technological improvements}: The largest technological hurdle we
+faced was in streamlining the connection between a Docker image and a
+cluster that can deploy many instances of this image automatically. As
+standards in cluster deployment platforms solidify, this approach would
+benefit from a software platform that requires only a Docker image (even 
+better, only a github repository) as well as the credentials for a cluster
+that supports a common platform such as Kubernetes. The platform could then
+support giving a list of usernames / email addresses, and would automatically
+create cluster instances along with their corresponding IP addresses.
+
+\item {\bf Instructional improvements}: Regardless of any changes to hardware
+or software, a collection of instructional materials should be created that
+focuses on instructors without the technological know-how of a sys admin.
+Docker is complicated, but it can be effectively used by following simple,
+straightforward guides. In addition, clusters such as XSEDE still have
+much progress to be made on their instructional materials in order to
+streamline the onboarding process.
+
+\item {\bf Cost and payment opportunities}: While running student instances
+on a cluster is not a large amount of money for most class sizes, the cost
+of deploying a cluster-based bootcamp is still a significant energy barrier
+to many instructors. We recommend that universities provide small grants
+with fast turnarounds specifically to pay for computing time on
+university clusters for the purpose of teaching.
