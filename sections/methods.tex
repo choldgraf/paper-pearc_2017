@@ -8,7 +8,7 @@ on for future work.
 
 \subsection{Computational resources}
 
-The Jetstream cloud platform (\url{http://jetstream-cloud.org/}) provided the
+The Jetstream\cite{Stewart2015Jetstream} cloud platform (\url{http://jetstream-cloud.org/}) provided the
 computational resources for the workshop. Jetstream's core capabilities include
 the ability to create interactive Virtual Machines (VMs), access to remote
 desktops through a web browser, and publishing VMs with a Digital Object
@@ -19,8 +19,8 @@ but who would benefit from advanced computational capabilities.
 *** DETAILED DIAGRAM OF HARDWARE + SOFTWARE ***
 
 Access to Jetstream is available to researchers at no cost through the
-NSF-funded XSEDE (Extreme Science and Engineering Discovery Environment) project
-(\url{https://www.xsede.org/}), which offers access to a plethora of
+NSF-funded XSEDE\footnote{https://www.xsede.org/} (Extreme Science and
+Engineering Discovery Environment) project\cite{Towns2014XSEDE}, which offers access to a plethora of
 supercomputers and high-end visualization and data-analysis resources across the
 country, to address increasingly diverse scientific and engineering challenges.
 
@@ -32,8 +32,8 @@ facilitate quick access and help prepare an allocation request.
 For the neuroimaging workshop, the local Campus Champion worked with Berkeley
 Institute for Data Science (BIDS) and
 eScience Institute data scientists to prepare an Education Allocation request. Below are
-some key excerpts from the 1-page allocation request, which you can read in full
-from the list of example allocation requests \footnote{https://portal.xsede.org/documents/10308/29438/Jetstream+Education+Allocation+request+-+Sample/28517ffe-79fa-4e3f-98c9-b64f126a1e6b}:
+some key excerpts from the 1-page allocation request\footnote{\url{https://portal.xsede.org/documents/10308/29438/Jetstream+Education+Allocation+request+-+Sample/28517ffe-79fa-4e3f-98c9-b64f126a1e6b}},
+which you can read in full from the list of example allocation requests:
 
 \begin{itemize}
 \item 50 Virtual Machines running simultaneously (40 students + 5 instructors +
@@ -47,8 +47,8 @@ test/spare/debug VMs)
 
 
 The technology we used to deploy the workshop in addition to the Jetstream cloud
-platform includes Docker, Dockerhub, and the datascience-notebook docker-stacks
-maintained by the Jupyter project. (\url{https://github.com/jupyter/docker-stacks/})
+platform includes Docker, Dockerhub, and the datascience-notebook docker-stacks\footnote{\url{https://github.com/jupyter/docker-stacks/}}
+maintained by the Jupyter project.
 
 \subsection{Development and environment control}
 
@@ -74,10 +74,23 @@ used as a snapshot-in-time or a ``time capsule'' so the software is preserved fo
 future use. Months or years for now it is possible to re-run the notebooks
 again, even if external software packages and dependencies have changed.
 
-The container image was pushed to Docker hub (\url{https://hub.docker.com/}),
+The container image was pushed to Docker hub \footnote{\url{https://hub.docker.com/}},
 which provides a centralized resource for container image discovery,
 distribution and change management, user and team collaboration, and workflow
-automation.
+automation. At a high-level the process is:
+
+\begin{enumerate}
+  \item On a laptop, create Dockerfile that:
+  \begin{itemize}
+    \item derives \texttt{FROM jupyter/datascience-notebook}
+    \item installs workshop-specific software packages and libraries
+    \item ensure software dependencies are pinned with explicit versions defined
+  \end{itemize}
+  \item Build docker image
+  \item Run docker image as container
+  \item Test Jupyter notebooks running inside container
+  \item Push docker image to DockerHub
+\end{enumerate}
 
 \subsubsection{Putting it together}
 
@@ -102,10 +115,14 @@ just a few minutes. At a high-level the process is:
 \end{enumerate}
 
 The deployment script from github URL for the workshop is a simple bash script
-that will be run when the VM starts. It installs Docker on the VM, pulls the
-workshop Docker image from DockerHub, downloads all the data needed for the
-examples, and starts the Docker container running the Jupyter notebook on a
-standard web port (80/443).
+that will be run when the VM starts that does the following:
+
+\begin{enumerate}
+\item Install Docker on the Jetstream VM
+\item Pull the workshop docker image from DockerHub
+\item Download all the data needed for the workshop examples
+\item start the Docker container running the Jupyter notebook, password-protected on a standard web port (80/443)
+\end{enumerate}
 
 It is worth noting a few issues related to networking and security that must be
 addressed for any scenario involving remote computing (whether in a cloud
@@ -115,7 +132,7 @@ When running Jupyter Notebooks on a laptop, they typically listen on network
 port 8888 and a user connects via their web browser to
 \url{http://localhost:8080}. In this configuration, the port is not accessible
 to a remote attacker. Whereas in a server environment, remote access is a key
-feeature, so it requires running the Jupyter notebook in a secure mode requiring
+feature, so it requires running the Jupyter notebook in a secure mode requiring
 a token or a password. Thankfully, the Jupyter team has configured the
 docker-stacks to run in a secure mode by default.
 
