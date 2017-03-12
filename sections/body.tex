@@ -16,14 +16,13 @@ machine learning techniques (e.g., deep learning methods using Caffe
 introduction to scikit-learn \cite{Pedregosa2012-dm}).
 
 *** IMAGE OF JUPYTER ENVIRONMENT IN CLASS ***
-Ariel showing an jupyter notebook in class: \url{https://www.dropbox.com/s/tfcymiqhh5nlvkm/ariel_ucsf2017.jpg?dl=0}
 
-All course materials were hosted via a shared online computing platform, and
-students accessed this platform via a unique URL. This made it possible to
-standardize the computing environment across both students and instructors,
-and minimized the effort needed to get students started with
-the material. In order to make course materials accessible in a live, online
-computing environment, the following considerations were taken:
+All course materials were hosted via a shared online computing platform.
+Students accessed this platform via the web browsers on their own computers.
+This made it possible to standardize the computing environment across both
+students and instructors, and minimized the effort needed to get students
+started with the material. In order to make course materials accessible in a
+live, online computing environment, the following considerations were taken:
 
 \begin{enumerate}
 
@@ -57,14 +56,14 @@ performed in Docker containers. This ensured that all the course materials could
 on any computing architecture that could host such a Docker image. In the day
 before the class, this image was deployed to several Virtual Machine (VM)
 instances being run on the Jetstream cloud computing platform
-\cite{Stewart2014Jestream} available through the Extreme Science and Engineering
+\cite{Stewart2015Jestream} available through the Extreme Science and Engineering
 Discovery Environment (XSEDE) \cite{Towns2014XSEDE}  (see section
 \ref{sec:methods}). A single IP address was generated for each instance - one
 for each student - and was sent out the morning of the event. Students only
 needed to click on their respective IP address, and they were instantly taken
 to a live Jupyter notebook contained within their XSEDE Jetstream computing
 environment. This notebook had all course materials, as well as access to the
-data, software packages, and live python kernels that were needed to execute the
+data, software packages, and live Python kernels that were needed to execute the
 course materials. In addition, this environment persisted several days after the
 class was finished in order to allow students to continue interacting with the
 material, or to port their work onto their personal computers.
@@ -79,9 +78,11 @@ material, or to port their work onto their personal computers.
 
 This section covers some of the main benefits and drawbacks of the cloud
 computing approach towards bootcamp-style events. First we will cover primary
-benefits of a traditional bootcamp event, next we will discuss drawbacks and how
-these are addressed by using cloud infrastructure. Finally we will discuss new
-challenges that were introduced and how they might be addressed in the future.
+benefits of a 'traditional' bootcamp event (one in which participants are asked
+to install the software on their own computers). Next we will discuss drawbacks
+and how these are addressed by using cloud infrastructure. Finally we will
+discuss new challenges that were introduced and how they might be addressed in
+the future.
 
 \subsubsection{Benefits of a traditional bootcamp approach}
 
@@ -113,7 +114,7 @@ can be given by the instructor. For example, this may limit the computational
 load used to perform any analyses in class. This variability also has
 implications for equality and discrimination, as students without access to
 laptops with the proper hardware for completing the course are often frustrated
-and unable to learn as effectively. <XXX CITATION>
+and unable to learn as effectively. \ariel{I don't think this requires a citation -- it's kinda self-evident}
 
 Another challenge with this approach is that instructors have limited control
 over the software experience of each student. For example, because operating
@@ -128,7 +129,7 @@ Course materials that are developed and tested only on the instructor's laptops
 may have software dependencies or other assumptions that are exposed too late,
 during the workshop itself, that may lead to complications on the student's
 laptops. This may be further compounded by differences in laptop and software
-configuration across multiple instructors with multually incompatible
+configuration across multiple instructors with mutually incompatible
 requirements. While learning how to deal with these conflicts is a valuable
 skill to learn, teaching these skills it is generally not the primary goal of
 these courses.
@@ -196,7 +197,7 @@ development cycle of the class. In the future, it will be important to provide
 practical guides in interfacing with campus cloud computing architecture, as
 well as a well-explained workflow for how to leverage these resources in
 teaching. There is also opportunity for advances in software to mitigate this
-problem, such as using the JupyterHub \cite{XXXJUPYTERHUBREFERENCE} platform
+problem, such as using the JupyterHub \cite{perez2015project} platform
 for managing user instances on a cluster deployment.
 
 \item {\bf Expenses associated with cloud computing}: Another challenge of using
