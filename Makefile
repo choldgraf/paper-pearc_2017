@@ -14,3 +14,8 @@ all: $(SRCS) $(REFS) $(FIGS)
 
 clean:
 	rm -f *~ *.dvi *.aux *.out *.log *.blg *.bbl $(REPORT).ps $(REPORT).pdf sections/*.aux comment.cut
+
+pwd=$(shell pwd)
+## To make the paper using the jupyter/datascience-notebook Docker image:
+docker:
+	docker run --rm -v $(pwd):/home/jovyan/work jupyter/datascience-notebook make
