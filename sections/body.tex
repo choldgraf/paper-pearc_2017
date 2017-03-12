@@ -28,14 +28,14 @@ live, online computing environment, the following considerations were taken:
 
 \item {\bf Software and computing environment}: First, a Docker image
 \cite{merkel2014docker} was created with the computational restrictions and
-computing environment that would match what would be available on the cluster.
-Instructors used a shared instance of this Docker image while they developed
-sections of the tutorial independently. They used a shared Github repository to
-host each section of the bootcamp, and pushed their materials as separate
-folders in this repository. As new packages were needed in order to cover
-particular topics, the base Docker image was updated with added dependencies. As
-a result, by the end of course development there was a single Docker image with
-all software tools needed to complete the course.
+computing environment that would match what would be available on the Jetstream
+instances we would provision. Instructors used a shared instance of this Docker
+image while they developed sections of the tutorial independently. They used a
+shared Github repository to host each section of the bootcamp, and pushed their
+materials as separate folders in this repository. As new packages were needed in
+order to cover particular topics, the base Docker image was updated with added
+dependencies. As a result, by the end of course development there was a single
+Docker image with all software tools needed to complete the course.
 
 \item {\bf Data management}: Some bootcamp-style events require data to use in
 the examples. For realistic research examples, the data can be cumbersome to
@@ -139,11 +139,11 @@ these courses.
 As discussed above, the key benefit of using a cloud-computing approach is
 easily standardizing the experience of each student via a shared online
 resource. Because computing environments are initialized automatically with
-Docker and the XSEDE cluster, students incur virtually zero startup cost before
-interacting with the course materials. They only need a web browser in order to
-run Jupyter notebooks. In addition, this ensures that all students start with a
-``clean'' computing environment - they had access only to the data, scripts, and
-packages that were required for the class.
+Docker and the XSEDE Jetstream cloud, students incur virtually zero startup cost
+before interacting with the course materials. They only need a web browser in
+order to run Jupyter notebooks. In addition, this ensures that all students
+start with a ``clean'' computing environment - they had access only to the data,
+scripts, and packages that were required for the class.
 
 This approach afforded many benefits for instructors and course development as
 well. By utilizing Docker for student deployments, the instructors knew the
@@ -198,7 +198,7 @@ practical guides in interfacing with campus cloud computing architecture, as
 well as a well-explained workflow for how to leverage these resources in
 teaching. There is also opportunity for advances in software to mitigate this
 problem, such as using the JupyterHub \cite{perez2015project} platform
-for managing user instances on a cluster deployment.
+for managing user instances.
 
 \item {\bf Expenses associated with cloud computing}: Another challenge of using
 commercial cloud computing is that computation time incurs a cost, either
@@ -267,37 +267,38 @@ provided by their university (a practice that is becoming more and more common).
 
 \end{enumerate}
 
-\subsection{Next steps for improving the cluster-based bootcamp}:
+\subsection{Next steps for improving the cloud-based bootcamp}:
 
 With these considerations in mind, we recommend that the following tangible
-advancements in order to make this type of cluster-based bootcamp as effective
+advancements in order to make this type of cloud-based bootcamp as effective
 as possible
 
 \begin{enumerate}
 
 \item {\bf Technological improvements}: The largest technological hurdle we
 faced was in streamlining the connection between a Docker image and a
-cluster that can deploy many instances of this image automatically. As
-standards in cluster deployment platforms solidify, this approach would
-benefit from a software platform that requires only a Docker image (even
-better, only a github repository) as well as the credentials for a cluster
+cloud-based system that can deploy many instances of this image automatically.
+As standards in cloud-compute deployment platforms solidify, this approach would
+benefit from a software platform that requires only a Docker image (even better,
+only a Github repository) as well as the credentials for a cloud-based system
 that supports a common platform such as Kubernetes. The platform could then
 support giving a list of usernames / email addresses, and would automatically
-create cluster instances along with their corresponding IP addresses.
+create instances of the learning environment along with their corresponding IP
+addresses.
 
 \item {\bf Instructional improvements}: Regardless of any changes to hardware
 or software, a collection of instructional materials should be created that
 focuses on instructors without the technological know-how of a sys admin.
 Docker is complicated, but it can be effectively used by following simple,
-straightforward guides. In addition, clusters such as XSEDE still have
+straightforward guides. In addition, resources such as XSEDE still have
 much progress to be made on their instructional materials in order to
 streamline the onboarding process.
 
-\item {\bf Cost and payment opportunities}: While running student instances
-on a cluster is not a large amount of money for most class sizes, the cost
-of deploying a cluster-based bootcamp is still a significant energy barrier
-to many instructors. We recommend that universities provide small grants
-with fast turnarounds specifically to pay for computing time on
-university clusters for the purpose of teaching.
+\item {\bf Cost and payment opportunities}: While running student instances on a
+cloud-based resource is not a large amount of money for most class sizes, the
+cost of deploying a cloud-based bootcamp is still a significant energy barrier
+to many instructors. We recommend that universities provide small grants with
+fast turnarounds specifically to pay for computing time on university HPC
+clusters for the purpose of teaching.
 
 \end{enumerate}
