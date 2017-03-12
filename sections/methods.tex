@@ -45,9 +45,6 @@ test/spare/debug VMs)
 \item We are requesting 10,000SUs in total.
 \end{itemize}
 
-\ariel{Is this still part of the allocation request? It's ambiguous: }
-\aaron{Ariel, I reforatted this as a bulleted list so hopefully this works as
-  the excerpt mentioned above?}
 
 The technology we used to deploy the workshop in addition to the Jetstream cloud
 platform includes Docker, Dockerhub, and the datascience-notebook docker-stacks
@@ -73,7 +70,7 @@ environment on the day of the workshop, including all required software
 dependencies. The container made it possible for each participant to easily run
 the software without installing each of the components, often a lengthy and
 error-prone process at the start of many workshops. The container can also be
-used as a snapshot-in-time or a "time capsule" so the software is preserved for
+used as a snapshot-in-time or a ``time capsule'' so the software is preserved for
 future use. Months or years for now it is possible to re-run the notebooks
 again, even if external software packages and dependencies have changed.
 
@@ -84,9 +81,6 @@ automation.
 
 \subsubsection{Putting it together}
 
-\ariel{This section reads a bit strangely. We already explained most of this
-before} \aaron{Ariel, how does this section read now? I’ve fleshed this part
-out so hopefully the additional details help bring this section together.}
 
 On the day of the workshop, the 50 Jetstream virtual machines (VMs) were
 deployed by hand using Jetstream's Atmosphere web interface
@@ -101,10 +95,10 @@ just a few minutes. At a high-level the process is:
 \item Select the pre-defined VM image: Ubuntu 14.04.3 Development GUI
 \item Choose instance size: m1.medium VM (6 vCPUs, 16GB RAM, 60GB
   Storage)
-\item Click "Advanced Options"
+\item Click ``Advanced Options''
 \item Select deployment script from github URL for the workshop
-\item Click "Continue to Launch"
-\item Click "Launch Instance"
+\item Click ``Continue to Launch''
+\item Click ``Launch Instance''
 \end{enumerate}
 
 The deployment script from github URL for the workshop is a simple bash script
