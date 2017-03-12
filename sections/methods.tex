@@ -30,14 +30,17 @@ following steps should be taken:
 
 \subsection{Computational resources and the XSEDE Jetstream cloud}
 
-The Jetstream~\cite{Stewart2015Jetstream} cloud platform (\url{http://jetstream-cloud.org/}) provided the
-computational resources for the workshop. Jetstream's core capabilities include
-the ability to create interactive Virtual Machines (VMs), access to remote
-desktops through a web browser, and publishing VMs with a Digital Object
-Identifier (DOI). Jetstream is
-attractive to communities who have not been users of traditional HPC systems,
-<XXX WHY IS JETSTREAM MORE ATTRACTIVE? HOW IS IT DIFF FROM TRADITIONAL HPC?>
-but who would benefit from advanced computational capabilities.
+The Jetstream~\cite{Stewart2015Jetstream} cloud platform
+(\url{http://jetstream-cloud.org/}) provided the computational resources for the
+workshop. Jetstream's core capabilities include the ability to create
+interactive Virtual Machines (VMs), access to remote desktops through a web
+browser, and publishing VMs with a Digital Object Identifier (DOI). Jetstream is
+attractive because it provides researchers a simple web-based
+interface\cite{NiravCyberinfra2016} to launch, provision, manage, build, and
+share customized virtual machines that include complete software dependencies
+for running complex applications, whereas HPC environments traditionally do not
+provide full administrative (root) access and are often not as flexible as
+cloud-based virtual machines.
 
 *** DETAILED DIAGRAM OF HARDWARE + SOFTWARE ***
 
@@ -124,7 +127,7 @@ with a single command. At a high-level the process is:
 \subsection{Putting it together}
 
 On the day of the workshop, the 50 Jetstream virtual machines (VMs) were
-deployed by hand using Jetstream's Atmosphere web interface
+deployed by hand using Jetstream's Atmosphere\cite{NiravCyberinfra2016} web interface
 (\url{http://www.cyverse.org/atmosphere}). While it is possible to create
 scripts for a fully automated deployment using the low-level OpenStack API that
 Jetstream is built on, we decided that the additional complexity was not
