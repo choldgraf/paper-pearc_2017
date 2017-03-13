@@ -38,7 +38,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{acmart}
-[2016/12/03 v1.25 Typesetting articles for Association of
+[2017/03/07 v1.32 Typesetting articles for Association of
 Computing Machinery]
 \def\@classname{acmart}
 \RequirePackage{xkeyval}
@@ -113,6 +113,11 @@ Computing Machinery]
 \newif\if@ACM@manuscript
 \newif\if@ACM@journal
 \newif\if@ACM@sigchiamode
+\ifnum\ACM@format@nr=5\relax % siggraph
+  \ClassWarning{\@classname}{The format `siggraph' is now obsolete.
+    I am switching to sigconf.}
+  \setkeys{acmart.cls}{format=sigconf}
+\fi
 \ifnum\ACM@format@nr=0\relax
   \@ACM@manuscripttrue
 \else
@@ -265,7 +270,9 @@ Computing Machinery]
     numbers,sort&compress,%
     open={[},close={]},citesep={,},%
     notesep={, }}}
+\if@ACM@natbib
 \citestyle{acmnumeric}
+\fi
 \def\@startsection#1#2#3#4#5#6{%
   \if@noskipsec \leavevmode \fi
   \par
@@ -283,6 +290,7 @@ Computing Machinery]
     {\@ssect{#3}{#4}{#5}{#6}}%
     {\@dblarg{\@sect{#1}{#2}{#3}{#4}{#5}{#6}}}}
 \def\@sect#1#2#3#4#5#6[#7]#8{%
+  \edef\@toclevel{\ifnum#2=\@m 0\else\number#2\fi}%
   \ifnum #2>\c@secnumdepth
     \let\@svsec\@empty
   \else
@@ -297,6 +305,9 @@ Computing Machinery]
           \interlinepenalty \@M #8\@@par}%
     \endgroup
     \csname #1mark\endcsname{#7}%
+    \ifnum #2>\c@secnumdepth \else
+        \@tochangmeasure{\csname the#1\endcsname}%
+    \fi
     \addcontentsline{toc}{#1}{%
       \ifnum #2>\c@secnumdepth \else
         \protect\numberline{\csname the#1\endcsname}%
@@ -307,6 +318,9 @@ Computing Machinery]
       #6{\hskip #3\relax
       \@svsec #8}%
       \csname #1mark\endcsname{#7}%
+      \ifnum #2>\c@secnumdepth \else
+        \@tochangmeasure{\csname the#1\endcsname\space}%
+      \fi
       \addcontentsline{toc}{#1}{%
         \ifnum #2>\c@secnumdepth \else
           \protect\numberline{\csname the#1\endcsname}%
@@ -351,9 +365,30 @@ Computing Machinery]
     \def\@svsechd{#4{\hskip #1\relax #5}}%
   \fi
   \@xsect{#3}}
+\def\@starttoc#1#2{\begingroup
+  \setTrue{#1}%
+  \par\removelastskip\vskip\z@skip
+  \@startsection{section}\@M\z@{\linespacing\@plus\linespacing}%
+    {.5\linespacing}{\centering\contentsnamefont}{#2}%
+  \@input{\jobname.#1}%
+  \if@filesw
+    \@xp\newwrite\csname tf@#1\endcsname
+    \immediate\@xp\openout\csname tf@#1\endcsname \jobname.#1\relax
+  \fi
+  \global\@nobreakfalse \endgroup
+  \addvspace{32\p@\@plus14\p@}%
+}
+\def\l@subsection{\@tocline{2}{0pt}{1pc}{3pc}{}}
+\def\l@subsubsection{\@tocline{2}{0pt}{1pc}{5pc}{}}
 \let\@footnotemark@nolink\@footnotemark
 \let\@footnotetext@nolink\@footnotetext
-\RequirePackage[bookmarksnumbered]{hyperref}
+\RequirePackage[bookmarksnumbered,unicode]{hyperref}
+\pdfstringdefDisableCommands{%
+  \def\unskip{}%
+  \def\textbullet{- }%
+  \def\textrightarrow{ -> }%
+  \def\footnotemark{}%
+}
 \urlstyle{rm}
 \ifcase\ACM@format@nr
 \relax % manuscript
@@ -385,7 +420,6 @@ Computing Machinery]
   \let\citeyearNP\citeyear
   \let\citeyear\citeyearpar
   \let\citeNP\citealt
-  \def\shortcite#1{\citeyear{#1}}
   \DeclareRobustCommand\citeA
      {\begingroup\NAT@swafalse
        \let\NAT@ctype\@ne\NAT@partrue\NAT@fullfalse\NAT@open\NAT@citetp}%
@@ -393,6 +427,7 @@ Computing Machinery]
 \else
   \providecommand\citename[1]{#1}
 \fi
+\def\shortcite#1{\ifNAT@numbers\cite{#1}\else\citeyear{#1}\fi}
 \def\bibliographystyle#1{%
   \ifx\@begindocumenthook\@undefined\else
     \expandafter\AtBeginDocument
@@ -412,51 +447,59 @@ Computing Machinery]
 \RequirePackage{geometry}
 \ifcase\ACM@format@nr
 \relax % manuscript
-   \geometry{letterpaper,head=1pc}%
+   \geometry{letterpaper,head=13pt,
+   marginparwidth=6pc}%
 \or % acmsmall
    \geometry{twoside=true,
-     includeheadfoot, head=1pc, foot=2pc,
+     includeheadfoot, head=13pt, foot=2pc,
      paperwidth=6.75in, paperheight=10in,
-     top=58pt, bottom=44pt, inner=46pt, outer=46pt
+     top=58pt, bottom=44pt, inner=46pt, outer=46pt,
+     marginparwidth=2pc
    }%
 \or % acmlarge
-   \geometry{twoside=true, head=1pc, foot=2pc,
+   \geometry{twoside=true, head=13pt, foot=2pc,
      paperwidth=8.5in, paperheight=11in,
      includeheadfoot,
-     top=78pt, bottom=114pt, inner=81pt, outer=81pt
+     top=78pt, bottom=114pt, inner=81pt, outer=81pt,
+     marginparwidth=4pc
      }%
 \or % acmtog
-   \geometry{twoside=true, head=1pc, foot=2pc,
+   \geometry{twoside=true, head=13pt, foot=2pc,
      paperwidth=8.5in, paperheight=11in,
      includeheadfoot, columnsep=24pt,
-     top=52pt, bottom=75pt, inner=52pt, outer=52pt
+     top=52pt, bottom=75pt, inner=52pt, outer=52pt,
+     marginparwidth=2pc
      }%
 \or % sigconf
-   \geometry{twoside=true, head=1pc,
+   \geometry{twoside=true, head=13pt,
      paperwidth=8.5in, paperheight=11in,
      includeheadfoot, columnsep=2pc,
-     top=57pt, bottom=73pt, inner=54pt, outer=54pt
+     top=57pt, bottom=73pt, inner=54pt, outer=54pt,
+     marginparwidth=2pc
      }%
 \or % siggraph
-   \geometry{twoside=true, head=1pc,
+   \geometry{twoside=true, head=13pt,
      paperwidth=8.5in, paperheight=11in,
      includeheadfoot, columnsep=2pc,
-     top=57pt, bottom=73pt, inner=54pt, outer=54pt
+     top=57pt, bottom=73pt, inner=54pt, outer=54pt,
+     marginparwidth=2pc
      }%
 \or % sigplan
-   \geometry{twoside=true, head=1pc,
+   \geometry{twoside=true, head=13pt,
      paperwidth=8.5in, paperheight=11in,
      includeheadfoot=false, columnsep=2pc,
-     top=1in, bottom=1in, inner=0.75in, outer=0.75in
+     top=1in, bottom=1in, inner=0.75in, outer=0.75in,
+     marginparwidth=2pc
      }%
 \or % sigchi
-   \geometry{twoside=true, head=1pc,
+   \geometry{twoside=true, head=13pt,
      paperwidth=8.5in, paperheight=11in,
      includeheadfoot, columnsep=2pc,
-     top=66pt, bottom=73pt, inner=54pt, outer=54pt
+     top=66pt, bottom=73pt, inner=54pt, outer=54pt,
+     marginparwidth=2pc
      }%
 \or % sigchi-a
-   \geometry{twoside=false, head=1pc,
+   \geometry{twoside=false, head=13pt,
      paperwidth=11in, paperheight=8.5in,
      includeheadfoot, marginparsep=72pt,
      marginparwidth=170pt, columnsep=20pt,
@@ -524,6 +567,8 @@ Computing Machinery]
         \rule\z@\footnotesep\ignorespaces#1\@finalstrut\strutbox}%
     \color@endgroup}}
 \def\@makefnmark{\hbox{\@textsuperscript{\normalfont\@thefnmark}}}
+\def\@textbottom{\vskip \z@ \@plus 1pt}
+\let\@texttop\relax
 \newif\if@ACM@newfonts
 \@ACM@newfontstrue
 \IfFileExists{libertine.sty}{}{\ClassWarning{\@classname}{You do not
@@ -538,8 +583,7 @@ Computing Machinery]
 \RequirePackage[tt=false]{libertine}
 \RequirePackage[varqu]{zi4}
 \RequirePackage[libertine]{newtxmath}
-\else
-\RequirePackage{textcomp}
+\RequirePackage[T1]{fontenc}
 \fi
 \if@ACM@sigchiamode
   \renewcommand{\familydefault}{\sfdefault}
@@ -639,6 +683,7 @@ Computing Machinery]
   JETC,%
   JOCCH,%
   PACMPL,%
+  POMACS,%
   TAAS,%
   TACCESS,%
   TACO,%
@@ -689,9 +734,9 @@ Computing Machinery]
   \def\@journalNameShort{ACM Comput. Surv.}%
   \def\@permissionCodeOne{0360-0300}%
 \or % IMWUT
-  \def\@journalName{PACM on Interactive, Mobile, Wearable and
-    Ubiquitous Technologies}%
-  \def\@journalNameShort{PACM Interact. Mob. Wearable Ubiquitous Technol.}%
+  \def\@journalName{Proceedings of the ACM on Interactive, Mobile,
+    Wearable and Ubiquitous Technologies}%
+  \def\@journalNameShort{Proc. ACM Interact. Mob. Wearable Ubiquitous Technol.}%
   \def\@permissionCodeOne{2474-9567}%
 \or % JACM
   \def\@journalName{Journal of the ACM}%
@@ -717,9 +762,13 @@ Computing Machinery]
   \def\@journalName{ACM Journal on Computing and Cultural Heritage}%
   \def\@journalName{ACM J. Comput. Cult. Herit.}%
 \or % PACMPL
-  \def\@journalName{PACM on Programming Languages}%
-  \def\@journalName{PACM Progr. Lang.}%
+  \def\@journalName{Proceedings of the ACM on Programming Languages}%
+  \def\@journalName{Proc. ACM Program. Lang.}%
   \def\@permissionCodeOne{2475-1421}%
+\or % POMACS
+  \def\@journalName{Proceedings of the ACM on Measurement and Analysis of Computing Systems}%
+  \def\@journalName{Proc. ACM Meas. Anal. Comput. Syst.}%
+  \def\@permissionCodeOne{2476-1249}%
 \or % TAAS
   \def\@journalName{ACM Transactions on Autonomous and Adaptive Systems}%
   \def\@journalNameShort{ACM Trans. Autonom. Adapt. Syst.}%
@@ -940,6 +989,18 @@ Computing Machinery]
   \if@ACM@anonymous\else
     \g@addto@macro\addresses{\affiliation{#1}{#2}}%
   \fi}
+\def\additionalaffiliation#1{\authornote{\@additionalaffiliation{#1}}}
+\def\@additionalaffiliation#1{\bgroup
+  \def\position##1{\ignorespaces}%
+  \def\institution##1{##1\ignorespaces}%
+  \def\department{\@ifnextchar[{\@department}{\@department[]}}%
+  \def\@department[##1]##2{\unskip, ##2\ignorespaces}%
+  \let\streetaddress\position
+  \let\city\position
+  \let\state\position
+  \let\postcode\position
+  \let\country\position
+  Also with #1\unskip.\egroup}
 \renewcommand{\email}[2][]{%
   \if@ACM@anonymous\else
     \g@addto@macro\addresses{\email{#1}{#2}}%
@@ -980,9 +1041,9 @@ Computing Machinery]
 \def\acmArticleSeq#1{\def\@acmArticleSeq{#1}}
 \acmArticleSeq{\@acmArticle}
 \def\acmYear#1{\def\@acmYear{#1}}
-\acmYear{2016}
+\acmYear{\the\year}
 \def\acmMonth#1{\def\@acmMonth{#1}}
-\acmMonth{1}
+\acmMonth{\the\month}
 \def\@acmPubDate{\ifcase\@acmMonth\or
   January\or February\or March\or April\or May\or June\or
   July\or August\or September\or October\or November\or
@@ -1020,12 +1081,12 @@ Computing Machinery]
 \long\def\@saveabstract#1{\long\gdef\@abstract{#1}}
 \@saveabstract{}
 \long\def\@lempty{}
-\define@boolkey+{@ACM@topmatter@}[@ACM@]{printcss}[true]{%
-  \if@ACM@printcss
-    \ClassInfo{\@classname}{Printing CSS}%
+\define@boolkey+{@ACM@topmatter@}[@ACM@]{printccs}[true]{%
+  \if@ACM@printccs
+    \ClassInfo{\@classname}{Printing CCS}%
   \else
-    \ClassInfo{\@classname}{Suppressing CSS}%
-  \fi}{\ClassError{\@classname}{printcss must be true or false}}
+    \ClassInfo{\@classname}{Suppressing CCS}%
+  \fi}{\ClassError{\@classname}{printccs must be true or false}}
 \define@boolkey+{@ACM@topmatter@}[@ACM@]{printacmref}[true]{%
   \if@ACM@printacmref
     \ClassInfo{\@classname}{Printing bibformat}%
@@ -1039,7 +1100,7 @@ Computing Machinery]
     \ClassInfo{\@classname}{Suppressing folios}%
   \fi}{\ClassError{\@classname}{printfolios must be true or false}}
 \def\settopmatter#1{\setkeys{@ACM@topmatter@}{#1}}
-\settopmatter{printcss=true, printacmref=true}
+\settopmatter{printccs=true, printacmref=true}
 \if@ACM@manuscript
   \settopmatter{printfolios=true}
 \else
@@ -1073,13 +1134,14 @@ Computing Machinery]
 \let\@concepts\@empty
 \newcommand\ccsdesc[2][100]{%
   \ccsdesc@parse#1~#2~}
+\RequirePackage{textcomp}
 \def\ccsdesc@parse#1~#2~#3~{%
   \expandafter\ifx\csname CCS@#2\endcsname\relax
-    \expandafter\gdef\csname CCS@#2\endcsname{\textbullet\textbf{#2} $\to$ }%
+    \expandafter\gdef\csname CCS@#2\endcsname{\textbullet\ \textbf{#2} \textrightarrow\ }%
   \g@addto@macro{\@concepts}{\csname CCS@#2\endcsname}\fi
   \expandafter\g@addto@macro\expandafter{\csname CCS@#2\endcsname}{%
-    \ifnum#1>499\textbf{#3; }\else
-    \ifnum#1>299\textit{#3; }\else
+    \ifnum#1>499\textbf{#3}; \else
+    \ifnum#1>299\textit{#3}; \else
     #3; \fi\fi}}
 \newif\if@printcopyright
 \@printcopyrighttrue
@@ -1155,7 +1217,7 @@ Computing Machinery]
   Copyright held by the owner/author(s). Publication rights licensed to
   ACM\@.
   \fi}
-\def\@formatdoi#1{\url{http://dx.doi.org/#1}}
+\def\@formatdoi#1{\url{https://doi.org/#1}}
 \def\@copyrightpermission{%
   \ifcase\acm@copyrightmode\relax % none
   \or % acmcopyright
@@ -1346,7 +1408,7 @@ Computing Machinery]
   \endgroup
   \setcounter{footnote}{0}%
   \@mkabstract
-  \if@ACM@printcss
+  \if@ACM@printccs
     \ifx\@concepts\@empty\else\bgroup
       {\@specialsection{CCS Concepts}%
          \@concepts\par}\egroup
@@ -1580,7 +1642,7 @@ Computing Machinery]
 \if@ACM@journal
   \let\position\@gobble
   \def\institution#1{#1\ignorespaces}%
-  \let\department\@gobble
+  \newcommand\department[2][0]{}%
   \let\streetaddress\@gobble
   \let\city\@gobble
   \let\state\@gobble
@@ -1589,7 +1651,7 @@ Computing Machinery]
 \else
   \def\position#1{#1\par}%
   \def\institution#1{#1\par}%
-  \def\department#1{#1\par}%
+  \newcommand\department[2][0]{#2\par}%
   \def\streetaddress#1{#1\par}%
   \let\city\@ACM@addtoaddress
   \let\state\@ACM@addtoaddress
@@ -1675,7 +1737,7 @@ Computing Machinery]
          \g@addto@macro{\@currentaffiliations}{\and##2}%
       \fi
     \fi
-     \global\let\and\@typeset@author@line}
+     \global\let\and\@typeset@author@line}%
   \global\setbox\mktitle@bx=\vbox{\noindent\box\mktitle@bx\par\medskip
     \noindent\addresses\@typeset@author@line
    \par\medskip}%
@@ -1776,16 +1838,20 @@ Computing Machinery]
 \def\@setaddresses{}
 \def\@mkabstract{\bgroup
   \ifx\@abstract\@lempty\else
-  {\if@ACM@journal
+  {\phantomsection\addcontentsline{toc}{section}{Abstract}%
+    \if@ACM@journal
        \small\noindent
     \else
       \section*{Abstract}%
     \fi
-   \phantomsection\addcontentsline{toc}{section}{Abstract}%
    \ignorespaces\@abstract\par}%
   \fi\egroup}
 \def\@mkbibcitation{\bgroup
   \def\footnotemark{}%
+  \def\\{\unskip{} \ignorespaces}%
+  \def\footnote{\ClassError{\@classname}{Please do note use footnotes
+      inside \string\title{} or \string\author{} command! Use
+      \string\titlenote{} or \string\authornote{} instead!}}%
   \par\medskip\small\noindent{\bfseries ACM Reference format:}\par\nobreak
   \noindent\authors. \@acmYear. \@title.
   \if@ACM@journal
@@ -1882,7 +1948,7 @@ Computing Machinery]
     \@acmNumber, Article \@acmArticle.  Publication date: \@acmPubDate.}%
   \or % acmlarge
     \fancyhead[LE]{\ACM@linecount\@headfootfont
-      \@acmArticle:\if@ACM@printfolios\thepage\quad\textbullet\quad\fi\@shortauthors}%
+      \@acmArticle\if@ACM@printfolios:\thepage\fi\quad\textbullet\quad\@shortauthors}%
     \fancyhead[LO]{\ACM@linecount}%
     \fancyhead[RO]{\@headfootfont
       \shorttitle\quad\textbullet\quad\@acmArticle\if@ACM@printfolios:\thepage\fi}%
@@ -1890,7 +1956,7 @@ Computing Machinery]
     \@acmNumber, Article \@acmArticle.  Publication date: \@acmPubDate.}%
   \or % acmtog
     \fancyhead[LE]{\ACM@linecount\@headfootfont
-      \@acmArticle:\if@ACM@printfolios\thepage\quad\textbullet\quad\fi\@shortauthors}%
+      \@acmArticle\if@ACM@printfolios:\thepage\fi\quad\textbullet\quad\@shortauthors}%
     \fancyhead[LO]{\ACM@linecount}%
     \fancyhead[RO]{\@headfootfont
       \shorttitle\quad\textbullet\quad\@acmArticle\if@ACM@printfolios:\thepage\fi}%
@@ -2057,6 +2123,7 @@ Computing Machinery]
 \fi
 \def\@adddotafter#1{#1\@addpunct{.}}
 \def\@addspaceafter#1{#1\@addpunct{\enspace}}
+\providecommand*\@dotsep{4.5}
 \def\@acmplainbodyfont{\itshape}
 \def\@acmplainindent{\parindent}
 \def\@acmplainheadfont{\scshape}
@@ -2181,7 +2248,7 @@ Computing Machinery]
   \ifx\@tempa\@tempb
      arXiv:\href{http://arxiv.org/abs/#2}{#2}\else arXiv:#2%
   \fi}
-\normalsize\normalfont
+\normalsize\normalfont\frenchspacing
 \endinput
 %%
 %% End of file `acmart.cls'.
