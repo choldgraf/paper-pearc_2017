@@ -15,8 +15,8 @@ following steps should be taken:
 \item Make a plan for spin-down of cloud instances after the class
 \item Apply for an XSEDE Education Allocation for Jetstream
 \item Install Docker for Mac or Docker for Windows on laptop
-\item Build the Docker container based on the jupyter/datascience-notebook \footnote{https://github.com/jupyter/docker-stacks/tree/master/datascience-notebook}
-\item Instructors create their course materials on a shared github repo
+\item Build docker container based on the jupyter/datascience-notebook \footnote{https://github.com/jupyter/docker-stacks/tree/master/datascience-notebook}
+\item Instructors create course materials on a shared github repo
 \item Test instructor's Jupyter notebooks in Docker on laptop
 \item Provision virtual machines (VMs) on Jetstream
 \item Deploy custom docker container on Jetstream VMs
@@ -73,9 +73,9 @@ prepare an Education Allocation request. Below are some key excerpts from the
 which you can read in full from the list of example allocation requests:
 
 \begin{itemize}
-\item 50 Virtual Machines running simultaneously (40 students + 5 instructors +
+\item 50 Virtual Machines running simultaneously \\(40 students + 5 instructors +
 test/spare/debug VMs)
-\item Each VM will need to be a: Jetstream m1.medium VM (6 vCPUs, 16GB RAM, 60GB
+\item Each VM will need to be a: Jetstream m1.medium VM \\(6 vCPUs, 16GB RAM, 60GB
   Storage)
 \item Each VM will need an external IP address so students can connect remotely
   with a web browser to a Jupyter Notebook running on the machine
@@ -119,11 +119,11 @@ automation. Once a Docker image is on Docker hub, it can be downloaded and run
 with a single command. At a high-level the process is:
 
 \begin{enumerate}
-  \item On a laptop, create Dockerfile that:
+  \item On a laptop, create a Dockerfile that:
   \begin{itemize}
     \item derives \texttt{FROM jupyter/datascience-notebook}
-    \item installs workshop-specific software packages and libraries
-    \item ensure software dependencies are pinned with explicit versions defined
+    \item installs workshop-specific software packages
+    \item pin packages with explicit versions defined
   \end{itemize}
   \item Build docker image
   \item Run docker image as container
