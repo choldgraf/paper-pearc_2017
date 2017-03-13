@@ -82,6 +82,14 @@ test/spare/debug VMs)
 \item We are requesting 10,000SUs in total.
 \end{itemize}
 
+An SU is a Service Unit. The maximum number of SUs for an Education Allocation
+on Jetstream is 50,000SUs, however after we calculated the total resources we
+needed for the course, we determined that 10,000SUs would be sufficient to
+conduct the course, as well as allow students to run VMs for a short time
+following the event. The SU cost per hour for each VM can be determined at the
+Jetstream General Virtual Machine Configurations page\footnote{\url{http://jetstream-cloud.org/general-vms.php}}.
+At the time of the workshop the m1.medium VM noted above cost 6 SUs per hour.
+
 The technology we used to deploy the workshop in addition to the Jetstream cloud
 platform includes Docker, Dockerhub, and the datascience-notebook docker-stacks\footnote{\url{https://github.com/jupyter/docker-stacks/}}
 maintained by the Jupyter project.
@@ -144,8 +152,8 @@ process that allowed us to manually start the deployment of all 50 instances in
 just a few minutes. At a high-level the process is:
 
 \begin{enumerate}
-\item Select the pre-defined VM image: Ubuntu 14.04.3 Development GUI
-\item Choose instance size: m1.medium VM (6 vCPUs, 16GB RAM, 60GB
+\item Select the pre-defined VM image: \\Ubuntu 14.04.3 Development GUI
+\item Choose instance size: m1.medium VM \\(6 vCPUs, 16GB RAM, 60GB
   Storage)
 \item Click ``Advanced Options''
 \item Select deployment script from github URL for the workshop
