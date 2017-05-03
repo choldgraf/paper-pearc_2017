@@ -1,0 +1,68 @@
+Below are the instructions from the PEARC admins. They have information about how we need to format the document + when we need to submit it.
+
+1. As an accepted paper, you must prepare a final version of your paper using the latest version of the ACM SIG proceedings templates, available at http://www.acm.org/publications/proceedings-template. Please follow the template instructions precisely. Corresponding authors will also receive email from the ACM rights management system (rightsreview@acm.org) with copyright information and other instructions. Upon completion of the online form, the system will email you the appropriate text for the permissions block of your final paper.
+
+2. Presenting Author Information – in order to make sure we are corresponding with the correct author please let us know which of the authors will be presenting the paper and their contact information. Future coorispondences regarding the conference attendance and presentation expectations will be communicated via this author (or authors). We would like the name and a short bio of the author.
+
+3. We will feature a fast-forward preview of the paper sessions after the Tuesday and Wednesday plenaries. This will give you an opportunity to preview your work to the entire conference. You will have 30 seconds to present one slide summarizing the work, so focus on what will excite attendees about your paper. We will be sending out a template closer to the conference date to prepare and submit a single slide. Please keep this in mind as the conference nears.
+
+The deadline for providing a final paper, with permissions block is Friday June 9th. This deadline MUST be met in order to get your paper published.
+
+
+-----------------
+Reviewer comments
+-----------------
+
+----------------------- REVIEW 1 ---------------------
+PAPER: 81
+TITLE: Portable learning environments for hands-on computational instruction: Using container- and cloud-based technology to teach data science
+AUTHORS: Chris Holdgraf, Aaron Culich, Ariel Rokem, Fatma Deniz, Dani Ushuzima and Maryana Alegro
+
+Overall evaluation: 0 (borderline paper)
+
+----------- Overall evaluation -----------
+The paper advertises the cloud platforms as efficient support in teachning the machine learning methods for large data mining.
+The concept is interesting, however the major revision of the paper is necessary for making it ready for presentation at the conference.
+
+1) I have a feeling that in fact the authors would like to compare the clouds with traditional work with repositories, but I cannot see any significant defferences amoung those two tevhnologies in the paper. The authors use the cloud mainly to give for the students the remote access to the teaching material and data and an opportunity to upload their work into cloud.
+It is unclear for me what kind of other services are used.
+
+2) The author mention the requirement of Knowledge in cloud-computing infrastructure as the drawback of the cloud approach. I cannot understand it. The main aim of using the cloud is to make such infrastructure 'invisible' to the end users (students). Why do they need such knowledge?
+
+3) The conclusions section should be moved to the end of the paper
+
+4) I expected some experimental verification and analysis of the compared teaching methodologies.. for the concrete workshop..
+
+5) All figures but Fig 2 are too small and unreadable
+
+6) The motivation of using XSEDE Jetstream cloud instead of OpenStack itself is not clear for me.
+
+
+----------------------- REVIEW 2 ---------------------
+PAPER: 81
+TITLE: Portable learning environments for hands-on computational instruction: Using container- and cloud-based technology to teach data science
+AUTHORS: Chris Holdgraf, Aaron Culich, Ariel Rokem, Fatma Deniz, Dani Ushuzima and Maryana Alegro
+
+Overall evaluation: 2 (accept)
+
+----------- Overall evaluation -----------
+The paper is about the experience of the authors in organizing a workshop focused on the analysis and interpretation of neu- roimaging data, ranging from whole-brain functional magnetic res- onance imaging (fMRI) to single-cell microscopy.
+
+They used a cloud computing services and advanced cyberinfrastructure support for improving learning ex-periences in bootcamp-style events. I found the paper interesting, although it should be more general (some of the proposed solutions are specific for their campus).
+
+
+----------------------- REVIEW 3 ---------------------
+PAPER: 81
+TITLE: Portable learning environments for hands-on computational instruction: Using container- and cloud-based technology to teach data science
+AUTHORS: Chris Holdgraf, Aaron Culich, Ariel Rokem, Fatma Deniz, Dani Ushuzima and Maryana Alegro
+
+Overall evaluation: 2 (accept)
+
+----------- Overall evaluation -----------
+This paper addresses an important topic. Speaking from experience, I am in charge of advanced (and general) computing in my department. Like many universities, we are finding ourselves dealing with various space-related crises as enrollments are up--way up--and we cannot schedule every course in a lab as desired. Adding remote virtual servers (running RDP/VNC) and cloud computing IDEs has been added to the mix out of necessity.
+
+This paper is one of the first I have seen--if not the first--to take a more profound look at the current landscape and understand its benefits and drawbacks. While focused on bootcamp style events, it has implications across the continuum, from introductory computing to advanced research computing.
+
+I really like the "checklist" in section 4. It is also nice to see the use of Jupyter notebooks. I've actually been in some bootcamp style events at a major national laboratory and have seen how effective notebooks are when it comes to presenting complex material. As an example, the ability to script a parallel computation and immediate see the results (much like what happens when working in Python/Jupyter in general) is a great way of bringing new researchers into the field, especially those who may not be computer scientists living the rock-n-roll lifestyle in SSH.
+
+I found this paper to be exceptionally well-written and well-informed in term of the current literature.
