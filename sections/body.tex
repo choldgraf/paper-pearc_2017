@@ -143,7 +143,8 @@ easily standardizing the experience of each student via a shared online
 resource. Because computing environments are initialized automatically with
 Docker and the XSEDE Jetstream cloud, students incur virtually zero startup cost
 before interacting with the course materials. They only need a web browser in
-order to run Jupyter notebooks. In addition, this ensures that all students
+order to run Jupyter notebooks that are hosted remotely on the cloud.
+This also ensures that all students
 start with a ``clean'' computing environment - they had access only to the data,
 scripts, and packages that were required for the class. One of the workshop
 participant's comment clearly demonstrates the benefits of such approach: ``Hosting
@@ -180,6 +181,15 @@ lowers the barrier to entry for users to discover and interact with the
 materials in the future. It also makes it easier for instructors to build new
 materials based on the Docker images of the course, which encourages
 collaboration and reduces the tendency for instructors to repeat efforts.
+
+This bootcamp used the XSEDE cluster for managing resources in the cloud. This is
+because XSEDE is widely available to many universities in the country. However,
+one could utilize any high-level computing platform that runs Kubernetes for managing
+user instances. By utilizing a high-level cloud service (such as XSEDE) built on
+top of lower-level cloud computing technologies (such as Open Stack), we required
+minimal setup and expertise in connecting these tools with the resources in the cloud.
+This allowed instructors and organizers to spend more of their time focusing on course
+material.
 
 \subsubsection{Challenges of the cloud-computing approach and areas for improvement}
 
