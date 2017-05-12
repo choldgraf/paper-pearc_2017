@@ -56,7 +56,11 @@ day before the class, this image was deployed to several Virtual Machine (VM)
 instances being run on the Jetstream cloud computing platform
 \cite{Stewart2015Jetstream} available through the Extreme Science and
 Engineering Discovery Environment (XSEDE) \cite{Towns2014XSEDE}  (see section
-\ref{sec:methods}). A single IP address was generated for each instance - one
+\ref{sec:methods}), though it is possible to use any cloud provider that
+provides Kubernetes support, such as Google Cloud, Microsoft Azure, or even
+institutional hardware at many universities.
+
+A single IP address was generated for each instance - one
 for each student - and was sent out the morning of the event. Students only
 needed to click on their respective IP address, and they were instantly taken to
 a live Jupyter notebook contained within their XSEDE Jetstream computing
@@ -183,7 +187,7 @@ materials based on the Docker images of the course, which encourages
 collaboration and reduces the tendency for instructors to repeat efforts.
 
 This bootcamp used the XSEDE cluster for managing resources in the cloud. This is
-because XSEDE is widely available to many universities in the country. However,
+because XSEDE is widely available to many universities in the United States. However,
 one could utilize any high-level computing platform that runs Kubernetes for managing
 user instances. By utilizing a high-level cloud service (such as XSEDE) built on
 top of lower-level cloud computing technologies (such as Open Stack), we required
@@ -308,5 +312,22 @@ a fast-track process of small grants or allocations with quick turnarounds
 specifically to provide access to computing time on cloud-based infrastructure
 that is pre-configured with container support for the purpose of teaching
 these kinds of container-based bootcamps.
+
+\subsection{Summary and future work}
+
+This project represents a first step towards a flexible and easy way to deploy
+computational environments on cloud platforms for the purposes of teaching
+data analytic methods to scientists. These cloud platforms are generally available
+through national advanced cyberinfrastructure (ACI) as well as on several
+commercial providers, making it easy to deploy these technologies for
+bootcamp-based pedagogy at many universities around the country.
+
+It should be noted that this is a rapidly growing set of tools and practices,
+and the landscape of what is possible will likely change quickly. For example,
+the JupyterHub <<<CITATION?>>> project is being developed in parallel with
+these efforts, and will streamline the process of connecting user
+accounts with cloud providers. In addition, the best-practices around using
+these tools effectively for pedagogy will continue to improve as the community
+gains a better understanding of how to leverage this cloud-based approach.
 
 \end{enumerate}

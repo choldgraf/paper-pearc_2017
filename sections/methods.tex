@@ -10,16 +10,23 @@ For instructors interested in hosting a similar event at their institution, the
 following steps should be taken:
 
 \begin{enumerate}
-\item Contact your local XSEDE Campus Champion
-\item Decide on the resources needed (e.g. number of nodes, GPUs, etc)
-\item Make a plan for spin-down of cloud instances after the class
-\item Apply for an XSEDE Education Allocation for Jetstream
+\item Choose a cloud provider (examples using XSEDE are inset below)
+  \begin{enumerate}
+    \item Contact your local XSEDE Campus Champion
+    \item Decide on the resources needed (e.g. number of nodes, GPUs, etc)
+    \item Make a plan for spin-down of cloud instances after the class
+    \item Apply for an XSEDE Education Allocation for Jetstream
+  \end{enumerate}
+
 \item Install Docker for Mac or Docker for Windows on laptop
 \item Build docker container based on the jupyter/datascience-notebook \footnote{https://github.com/jupyter/docker-stacks/tree/master/datascience-notebook}
 \item Instructors create course materials on a shared github repo
 \item Test instructor's Jupyter notebooks in Docker on laptop
-\item Provision virtual machines (VMs) on Jetstream
-\item Deploy custom docker container on Jetstream VMs
+\item Deploy user containers
+  \begin{enumerate}
+  \item Provision virtual machines (VMs) on Jetstream
+  \item Deploy custom docker container on Jetstream VMs
+  \end{enumerate}
 \item Send IP addresses for each machine to students (one per student)
 \item Connect from your browser to Jupyter notebooks running on Jetstream IP address
 \item Run the bootcamp
