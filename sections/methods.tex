@@ -1,6 +1,6 @@
 \section{Methods and technical infrastructure}\label{sec:methods}
 
-This section describes the ACI support that made this workshop possible, and
+This section describes the cyber-infrastructure support that made this workshop possible, and
 highlights reusable and shareable patterns to build on for future work. We will
 begin with a rough guide to the steps required to replicate this style of
 bootcamp elsewhere, and then cover more details as to the specific hardware and
@@ -18,7 +18,7 @@ following steps should be taken:
     \item Apply for an XSEDE Education Allocation for Jetstream
   \end{enumerate}
 
-\item Install Docker for Mac or Docker for Windows on laptop
+\item Install Docker for Mac or Docker for Windows on a laptop
 \item Build docker container based on the jupyter/datascience-notebook \footnote{https://github.com/jupyter/docker-stacks/tree/master/datascience-notebook}
 \item Instructors create course materials on a shared github repo
 \item Test instructor's Jupyter notebooks in Docker on laptop
@@ -28,7 +28,7 @@ following steps should be taken:
   \item Deploy custom docker container on Jetstream VMs
   \end{enumerate}
 \item Send IP addresses for each machine to students (one per student)
-\item Connect from your browser to Jupyter notebooks running on Jetstream IP address
+\item Connect to Jupyter notebooks running on Jetstream via a public IP address
 \item Run the bootcamp
 \item Assist students in migrating work onto their own machines
 \end{enumerate}
@@ -81,7 +81,7 @@ process of choosing and obtaining access to the resource, many campuses
 have local XSEDE Campus Champions who can facilitate quick access and
 help prepare an allocation request.
 
-For the neuroimaging workshop, the local Campus Champion worked with Berkeley
+For the neuroimaging workshop, the local XSEDE Campus Champion worked with Berkeley
 Institute for Data Science (BIDS) and eScience Institute data scientists to
 prepare an Education Allocation request. Below are some key excerpts from the
 1-page allocation request \footnote{\url{https://portal.xsede.org/documents/10308/29438/Jetstream+Education+Allocation+request+-+Sample/28517ffe-79fa-4e3f-98c9-b64f126a1e6b}},

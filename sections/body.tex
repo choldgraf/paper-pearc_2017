@@ -16,7 +16,7 @@ machine learning techniques (e.g., deep learning methods using Caffe
 introduction to scikit-learn \cite{Pedregosa2012-dm}).
 
 All course materials were hosted via a shared online computing platform.
-Students accessed this platform via the web browsers on their own computers.
+Students accessed this platform via web browsers on their own computers.
 This made it possible to standardize the computing environment across both
 students and instructors, and minimized the effort needed to get students
 started with the material. In order to make course materials accessible in a
@@ -24,10 +24,13 @@ live, online computing environment, the following considerations were taken:
 
 \begin{enumerate}
 
-\item {\bf Software and computing environment}: First, a Docker image
+\item {\bf Software and computing environment}: The development of the course material was
+performed in Docker containers. This ensured that all course materials could
+run on any computing architecture that could host such a Docker image.
+First, a Docker image
 \cite{merkel2014docker} was created with the computational restrictions and
-computing environment that would match what would be available on the Jetstream
-instances we would provision. Instructors used a shared instance of this Docker
+computing environment that would match what would be available on the cloud
+platform we used. Instructors used a shared instance of this Docker
 image while they developed sections of the tutorial independently. They used a
 shared Github repository to host each section of the bootcamp, and pushed their
 materials as separate folders in this repository. As new packages were needed in
@@ -35,30 +38,29 @@ order to cover particular topics, the base Docker image was updated with added
 dependencies. As a result, by the end of course development there was a single
 Docker image with all software tools needed to complete the course.
 
-\item {\bf Data management}: Some bootcamp-style events require data to use in
-the examples. For realistic research examples, the data can be cumbersome to
+\item {\bf Data management}: Many bootcamp-style events require data to use in
+the materials. For realistic research examples, the data can be cumbersome to
 download and modify (for example, if many students attempt to download the
 same file at once during class). This course covered a wide range of datasets
-including publicly-available functional magnetic resonance imaging (fMRI) data
+including publicly-available fMRI data
 as well as images of cells collected from the human brain. Instructors used a
 script that fetched this data from online repositories, and then stored it in
 a common data folder on the user's computer. The Docker images were then
 configured such that this script would be run as soon as a new image was
 instantiated, ensuring that all data was pre-loaded onto the user's
-filesystem upon launch. In addition, because students had access to their
+filesystem upon launch. Because students had access to their
 own computing environments, this data (and any modifications of it) persisted
 over time and between computing sessions.
 
-\item {\bf Environment distribution}: The development of the course material was
-performed in Docker containers. This ensured that all the course materials could
-run on any computing architecture that could host such a Docker image. In the
-day before the class, this image was deployed to several Virtual Machine (VM)
+\item {\bf Environment distribution}: In the
+day before the class, the course Docker image was deployed to several Virtual Machine (VM)
 instances being run on the Jetstream cloud computing platform
-\cite{Stewart2015Jetstream} available through the Extreme Science and
+\cite{Stewart2015Jetstream}, available through the Extreme Science and
 Engineering Discovery Environment (XSEDE) \cite{Towns2014XSEDE}  (see section
-\ref{sec:methods}), though it is possible to use any cloud provider that
-provides Kubernetes support, such as Google Cloud, Microsoft Azure, or even
-institutional hardware at many universities.
+\ref{sec:methods}). We chose this environment due to its presence on many
+university campuses, though it is possible to use any cloud provider that
+provides Kubernetes support such as Google Cloud, Microsoft Azure, or even
+institutional hardware.
 
 A single IP address was generated for each instance - one
 for each student - and was sent out the morning of the event. Students only
@@ -95,15 +97,15 @@ the future.
 The challenge of asking students to do all work on their own machines has one
 primary benefit: they are operating in the computing environment that they
 likely use on a daily basis. While it is common for frustrations to pop up
-during installation and execution of course materials, these also serve as
-learning opportunities for the frustrations that even seasoned coders experience
-on a daily basis, enabling incidental learning of the skills needed to know how
-to solve problems in general. In addition, by doing all course computation on
+during installation and execution of course materials, these are also
+quite common in every-day practice, and enable incidental learning
+of the skills needed to know how to solve problems in general.
+In addition, by doing all course computation on
 their own computer, there is no need to adapt to a completely new computing
 approach (beyond learning about new packages, languages, etc). Finally, after
 the course is over there is no need to migrate course materials to new hardware,
-and students may theoretically continue interacting with material immediately,
-and applying it to their own questions.
+and students may theoretically continue to interact with material immediately,
+and apply it to their own questions.
 
 \subsubsection{Challenges of a traditional bootcamp approach}
 
@@ -132,8 +134,8 @@ materials during the workshop unless they want to lead the class through a joint
 session on pulling from Github.
 
 Course materials that are developed and tested only on the instructor's laptops
-may have software dependencies or other assumptions that are exposed too late,
-during the workshop itself, that may lead to complications on the student's
+may have software dependencies or other assumptions that are exposed too late or
+during the workshop itself, leading to complications on the students'
 laptops. This may be further compounded by differences in laptop and software
 configuration across multiple instructors with mutually incompatible
 requirements. While learning how to deal with these conflicts is a valuable
@@ -145,13 +147,14 @@ these courses.
 As discussed above, the key benefit of using a cloud-computing approach is
 easily standardizing the experience of each student via a shared online
 resource. Because computing environments are initialized automatically with
-Docker and the XSEDE Jetstream cloud, students incur virtually zero startup cost
+Docker and a cloud provider (in our case, the XSEDE Jetstream cloud),
+students incur virtually zero startup cost
 before interacting with the course materials. They only need a web browser in
-order to run Jupyter notebooks that are hosted remotely on the cloud.
+order to run Jupyter notebooks that are hosted remotely.
 This also ensures that all students
-start with a ``clean'' computing environment - they had access only to the data,
-scripts, and packages that were required for the class. One of the workshop
-participant's comment clearly demonstrates the benefits of such approach: ``Hosting
+start with a ``clean'' computing environment - they have access only to the data,
+scripts, and packages that were required for the class. As one of the workshop
+participants explained, ``Hosting
 the tutorial software made it seamless for users. I've never seen a hands on
 tutorial work that well.''
 
@@ -186,14 +189,14 @@ materials in the future. It also makes it easier for instructors to build new
 materials based on the Docker images of the course, which encourages
 collaboration and reduces the tendency for instructors to repeat efforts.
 
-This bootcamp used the XSEDE cluster for managing resources in the cloud. This is
-because XSEDE is widely available to many universities in the United States. However,
+Finally, it is worth emphasizing that while this bootcamp used
+the XSEDE cloud platform for managing computational resources (due to its
+presence at many universities in the United States),
 one could utilize any high-level computing platform that runs Kubernetes for managing
 user instances. By utilizing a high-level cloud service (such as XSEDE) built on
-top of lower-level cloud computing technologies (such as Open Stack), we required
-minimal setup and expertise in connecting these tools with the resources in the cloud.
-This allowed instructors and organizers to spend more of their time focusing on course
-material.
+top of lower-level cloud computing technologies (such as Open Stack), the
+teaching team required
+minimal setup and expertise in connecting course materials with the resources in the cloud.
 
 \subsubsection{Challenges of the cloud-computing approach and areas for improvement}
 
@@ -204,12 +207,14 @@ future iterations of this approach towards teaching.
 
 \begin{enumerate}
 
-\item {\bf Knowledge in cloud-computing infrastructure}: The primary drawback of
-this approach is the necessity of knowledge in computing infrastructures and
-their availability. While there are many available resources to gain
+\item {\bf Team knowledge in cloud-computing infrastructure}: The primary drawback of
+this approach is the necessity of at least one member to have knowledge
+in computing infrastructures and
+their availability. While there are many available resources to gain an
 understanding of cloud-computing infrastructure, they are often idiosyncratic and
-inaccessible for novice users. In our case, instructors had to work with a
-campus cyberinfrastructure expert in order to set up the Docker images within
+inaccessible for novice users. Fortunately, most university campuses
+have individuals who are trained in these methods. In our case, instructors
+worked with a campus cyberinfrastructure expert in order to set up the Docker images within
 the XSEDE Jetstream environment. In addition, significant development had to go
 into creating and debugging the Docker images, particularly early on in the
 development cycle of the class. In the future, it will be important to provide
@@ -221,45 +226,42 @@ for managing user instances.
 
 \item {\bf Expenses associated with cloud computing}: Another challenge of using
 commercial cloud computing is that computation time incurs a cost, either
-financial or in the form of an allocation of Service Units (SUs) in the case of
-XSEDE. Fortunately in our experience the XSEDE allocation process has a quick
+financial or in the form of an allocation of Service Units (SUs).
+Fortunately, the XSEDE allocation process has a quick
 turnaround for Jetstream Education Allocations with a limit up to 50,000 SUs.
-However, the turnaround times are not documented transparently, so it might not
-be obvious to the workshop coordinators without the help of the local XSEDE campus
-champion.
+While this is not a guarantee, it is common to receive allocation grants
+from cloud providers for educational events.
 
-Additionally, because the Education Allocation is not guaranteed, a backup plan
-is essential if the award is not granted. For our course, the equivalent cost
+In the absence of freely-avialable computational resources, it is also
+possible to utilize any cloud platform's standard payment model in order
+to pay for course infrastructure. For our course, the equivalent cost
 for our setup on a commercial cloud provider would be approximately \$600-700.
-Many cloud computing platforms (particularly those associated with universities)
-are willing to provide cloud credits for educational purposes. However, as with
-the XSEDE allocations the cloud credits are not guaranteed and sometimes have
-much longer turnaround times.
+This cost will likely go down in the future as infrastructure for more efficiently
+managing cloud resources is created (e.g., \cite{perez2015project})
 
 For situations where instructors do not have access to free credits for
-commercial cloud computing, universities should provide modest grants to pay for
+commercial cloud computing or funding to pay for their own
+cloud resources, universities should provide modest grants to pay for
 these resources or provide Jetstream-like cloud computing resources at the
 campus-level.
 
-\item {\bf Knowledge in container technology}: While containerization has become
-commonplace in industry, it is still rarely used in academic research. Use-cases
-such as these demonstrate its value, and we believe that services such as Docker
-are well-suited for some academic workflows. While Docker is extremely powerful,
+\item {\bf Knowledge in container technology}: While Docker is extremely powerful,
 it is still growing in both its features and API. This can be an impediment to
 sustainable developments based on Docker, and a challenge to novices that are
 learning how to deploy course materials for the first time. In order to improve
 the accessibility of this approach for new instructors, it will be crucial to
 minimize the effort required to set up a minimal computational environment with
 Docker. Fortunately the Jupyter base Docker image maintained by the Jupyter
-project provides a good starting point, but more efforts towards streamlining
+project provides a good starting point, though more efforts towards streamlining
 this process are needed.
 
 \item {\bf Migrating students from the cloud to their computers}: A final
-challenge worth noting is the fact that students are working on a new and
+challenge is that students are working on a new and
 unfamiliar computational environment, rather than on their own laptops. Because
-all course materials are run in the cloud, another migration step would be
+all course materials are run in the cloud, another migration step is
 needed to transfer the software and data to other, more familiar environments.
-Fortunately, it is straightforward to initialize the course Docker image with a
+It is straightforward to initialize the course Docker image on a
+personal laptop with a
 few simple commands, but this can be a large impediment for a student who has
 just learned how to program.
 
@@ -273,13 +275,13 @@ software and computing has been gained, potentially mitigating the frustration
 associated with migrating off of the cloud. Meanwhile, the experience also
 serves to familiarize students with the cloud-computing environment. As a result
 they may be poised to do their own work on cloud-computing environments
-provided by their university (a practice that is becoming more and more common).
+provided by their university (a practice that is increasingly common).
 
 \end{enumerate}
 
 \subsection{Next steps for improving the cloud-based bootcamp}
 
-With these considerations in mind, we recommend that the following tangible
+With these considerations in mind, we recommend the following tangible
 advancements in order to make this type of cloud-based bootcamp as effective
 as possible
 
@@ -294,14 +296,15 @@ only a Github repository) as well as the credentials for a cloud-based system
 that supports a common platform such as Kubernetes. The platform could then
 support giving a list of usernames / email addresses, and would automatically
 create instances of the learning environment along with their corresponding IP
-addresses.
+addresses. There are several software efforts taking place along these
+lines, including the JupyterHub \cite{perez2015project} and Binder (\url{http://mybinder.org/}) projects.
 
 \item {\bf Instructional improvements}: Regardless of any changes to hardware
 or software, a collection of instructional materials should be created that
-focuses on instructors without the technological know-how of a sys admin.
+focuses on instructors without the technological know-how of a systems administrator.
 Docker is complicated, but it can be effectively used by following simple,
-straightforward guides. In addition, resources such as XSEDE still have
-much progress to be made on their instructional materials in order to
+straightforward guides. In addition, cloud resources such as XSEDE need to
+improve their instructional materials in order to
 streamline the onboarding process.
 
 \item {\bf Cost and payment opportunities}: While running student instances on a
@@ -324,7 +327,7 @@ bootcamp-based pedagogy at many universities around the country.
 
 It should be noted that this is a rapidly growing set of tools and practices,
 and the landscape of what is possible will likely change quickly. For example,
-the JupyterHub <<<CITATION?>>> project is being developed in parallel with
+the JupyterHub project\cite{perez2015project} is being developed in parallel with
 these efforts, and will streamline the process of connecting user
 accounts with cloud providers. In addition, the best-practices around using
 these tools effectively for pedagogy will continue to improve as the community
