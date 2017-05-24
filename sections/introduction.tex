@@ -31,7 +31,8 @@ recent work in utilizing cloud-based infrastructure to enhance this learning
 experience, and to streamline the ability of instructors to
 teach material that focuses on data analytic techniques. Our approach
 utilizes recent advances in cloud- and cluster- based technology, such
-as Kubernetes, Container technology, and the Jupyter framework for computing.
+as container technology (e.g., Kubernetes and Docker) and the
+Jupyter framework for computing. 
 
 This article is a case-study covering our recent experience implementing this approach, using
 advanced cyberinfrastructure to teach a day-long bootcamp in machine learning at
@@ -50,7 +51,10 @@ the community, and uses low-cost computing services that are available
 to instructors and institutions in the United States. In addition, the
 use of these technologies does not require that the entire
 team of instructors become fully skilled at using them. It is
-usually enough for a single team member to understand, set up, and manage these resources.
+usually enough for a single team member to understand, set up, and manage these resources. The container technology (Docker) and cloud
+computing resources (XSEDE) we use are widely available platforms.
+However, this teaching environment can be similarly applied using
+different container or cloud computing resources.
 We will discuss the challenges in implementing this course
 setup effectively, and discuss its merits and drawbacks.
 
@@ -104,6 +108,9 @@ A solution to mitigate many of these challenges is to offload the issue of
 student-specific hardware onto a shared cloud computing platform. This approach
 standardizes the experience of each student by allowing them access to a single
 online resource for the duration of the class, without requiring any new
-software or data to be downloaded on student computers. Next we describe
+software or data to be downloaded on student computers. Students can work
+on course material simultaneously with the instructor and can
+experiment with multiple solutions on their cloud copy of the material,
+creating a more interactive teaching and learning environment. Next we describe
 an implementation of this model at a day-long workshop hosted at the
 University of California, San Francisco.
