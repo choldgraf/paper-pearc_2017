@@ -24,18 +24,22 @@ Overall evaluation: 0 (borderline paper)
 The paper advertises the cloud platforms as efficient support in teachning the machine learning methods for large data mining.
 The concept is interesting, however the major revision of the paper is necessary for making it ready for presentation at the conference.
 
+<<<CHRIS NOTE - I feel like most of this reviewer's comments should be addressed in the introduction. They are not details / implementation questions, but more "motivation and why is this useful?" questions. I tried
+to separate out the intro into a shorter "proper" intro section, and a second more long-winded one, to make
+these points more clearly >>>
+
 1) I have a feeling that in fact the authors would like to compare the clouds with traditional work with repositories, but I cannot see any significant defferences amoung those two tevhnologies in the paper. The authors use the cloud mainly to give for the students the remote access to the teaching material and data and an opportunity to upload their work into cloud.
-It is unclear for me what kind of other services are used.
+It is unclear for me what kind of other services are used.  <--- emphasized the fact that students don't need to download anything new onto their computer, they only go to a website.
 
-2) The author mention the requirement of Knowledge in cloud-computing infrastructure as the drawback of the cloud approach. I cannot understand it. The main aim of using the cloud is to make such infrastructure 'invisible' to the end users (students). Why do they need such knowledge?
+2) The author mention the requirement of Knowledge in cloud-computing infrastructure as the drawback of the cloud approach. I cannot understand it. The main aim of using the cloud is to make such infrastructure 'invisible' to the end users (students). Why do they need such knowledge?  <--- Tried to clarify language in the intro saying only one person needs any knowledge of cloud infrastructure.
 
-3) The conclusions section should be moved to the end of the paper
+3) The conclusions section should be moved to the end of the paper  <--- I kinda wanna push back on this. I like the methods being last because it's more of an appendix. what do people think?
 
-4) I expected some experimental verification and analysis of the compared teaching methodologies.. for the concrete workshop..
+4) I expected some experimental verification and analysis of the compared teaching methodologies.. for the concrete workshop..  <--- added language that this was a case study to the intro
 
-5) All figures but Fig 2 are too small and unreadable
+5) All figures but Fig 2 are too small and unreadable  <--- TODO still need to address this.
 
-6) The motivation of using XSEDE Jetstream cloud instead of OpenStack itself is not clear for me.
+6) The motivation of using XSEDE Jetstream cloud instead of OpenStack itself is not clear for me. <--- I added a paragraph mentioning that the XSEDE cluster is widely available and that really you only need a service that runs Kubernetes.
 
 
 ----------------------- REVIEW 2 ---------------------
@@ -48,7 +52,7 @@ Overall evaluation: 2 (accept)
 ----------- Overall evaluation -----------
 The paper is about the experience of the authors in organizing a workshop focused on the analysis and interpretation of neu- roimaging data, ranging from whole-brain functional magnetic res- onance imaging (fMRI) to single-cell microscopy.
 
-They used a cloud computing services and advanced cyberinfrastructure support for improving learning ex-periences in bootcamp-style events. I found the paper interesting, although it should be more general (some of the proposed solutions are specific for their campus).
+They used a cloud computing services and advanced cyberinfrastructure support for improving learning ex-periences in bootcamp-style events. I found the paper interesting, although it should be more general (some of the proposed solutions are specific for their campus).  <--- Hopefully addressed by the paragraph on the XSEDE cluster being widely available etc.
 
 
 ----------------------- REVIEW 3 ---------------------

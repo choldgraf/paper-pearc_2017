@@ -1,69 +1,114 @@
 \section{Introduction}
 
-Over the last several years, there has been a growing interest in learning
-outside of the traditional classroom setting. Whether it is because departments
-do not offer classes in a certain area, or because the format of semester-long
-courses does not mesh well with the topics covered, there is a demand for new
-approaches to teaching the skills and ideas needed to do science. This is
-particularly true in teaching computational and data analytic techniques,
+Science has recently seen a large growth in the use of
+computationally intensive and data-centric methods. Researchers are
+increasingly using programming languages such as R or Python, and utilizing
+complex algorithms in applied statistics and machine learning in order to
+perform their research \cite{momcheva2015astro}.
+
+With an increased focus on computational methods
+comes new challenges in teaching these techniques, and new approaches
+toward sharing knowledge with fellow scientists.
+A rapidly growing approach to scientific training involves learning
+outside of the traditional semester-long classroom setting.
+This is particularly true
+for teaching computational and data analytic techniques,
 as instructors must teach both conceptual and methodological information
-at the same time. One common way to teach this type of skills is a short,
-time-bounded learning event, such as a bootcamp or short-course
-\cite{wilson2016software}. These attempt to compress several
+simultaneously. A common way to teach these skills is a short,
+time-bounded learning event, such as a bootcamp or workshop
+\cite{wilson2016software}. These  courses attempt to compress several
 topics into an intensive learning session that is usually held over one or
 several days.
 
-Workshops often follow the same formula, roughly described here: First,
-instructors develop materials on their own computers, sharing them with
-participants (e.g., as a public Github repository). Often, instructors will use
-formats, such as Jupyter notebooks, that interleave code, text describing the
-data and computations, results, and illustrations
-\cite{kluyver2016jupyter}. On the days preceding the event, organizers send
-instructions to participants, including how to download the materials and their
-dependencies, and how to configure the software dependencies to work on their
-laptop computers. On the day of the workshop, instructors would assume that
-students have already followed these instructions successfully, or often hold
-mini ``install-fest'' sessions that assist students that have problems in
-getting their environments set up. The course itself emphasizes hands-on
-learning, with students interacting with course material on their own
-machines as the instructors are teaching.
+As these new learning models are adopted, it opens
+opportunities for developing new technology and models for pedagogy that are
+focused on "hands-on" learning. Here we describe
+recent work in utilizing cloud-based infrastructure to enhance this learning
+experience, and to streamline the ability of instructors to
+teach material that focuses on data analytic techniques. Our approach
+utilizes recent advances in cloud- and cluster- based technology, such
+as container technology (e.g., Kubernetes and Docker) and the
+Jupyter framework for computing. 
 
-These kinds of time-bounded bootcamps offer many advantages for learning over
-longer and less-frequent courses. For example, they allow the students to focus
+This article is a case-study covering our recent experience implementing this approach, using
+advanced cyberinfrastructure to teach a day-long bootcamp in machine learning at
+the University of California in San Francisco.
+We describe the technical tool-chain and the processes that were used in
+designing this course. This
+unique design includes hosting all course materials online and providing
+an interactive, online environment where students can run code via the cloud
+without requiring them to download anything onto their machine.
+It is a snapshot of the current state
+of technology and practice around these ideas, and is likely to evolve rapidly
+as both the tools and our knowledge of their use in pedagogy improves.
+
+Importantly, this stack only utilizes tools that are
+open-source and freely available to
+the community, and uses low-cost computing services that are available
+to instructors and institutions in the United States. In addition, the
+use of these technologies does not require that the entire
+team of instructors become fully skilled at using them. It is
+usually enough for a single team member to understand, set up, and manage these resources.
+The container technology (Docker) and cloud
+computing resources (XSEDE) we use are widely available platforms.
+However, this teaching environment can be similarly applied using
+different container or cloud computing resources.
+We will discuss the challenges in implementing this course
+setup effectively, and discuss its merits and drawbacks.
+
+\subsection{The bootcamp model of pedagogy}
+
+For the purposes of this paper we define bootcamps and workshops within
+the same category of time-bounded events. These are relatively short-term
+learning sessions in which a group of students moves rapidly through a
+collection of training material, generally with the guidance of one
+or many instructors. Time-bounded workshops often follow the same
+formula, roughly described here.
+
+First, instructors develop materials on their own computers, sharing them with
+participants (e.g., as a public Github repository). Often, instructors will use
+file formats, such as Jupyter notebooks, that
+interleave code, text describing the
+data and computations, results, and illustrations
+\cite{kluyver2016jupyter}. In the days preceding the event, organizers send
+instructions to participants, such as how to download the materials and their
+dependencies or how to configure these dependencies on their
+laptop computers. On the day of the workshop, instructors assume that
+students have already followed these instructions successfully, or hold
+mini ``install-fest'' sessions that assist students in
+getting their environments set up. The course itself emphasizes hands-on
+learning, and students interact with course material on their own
+machines as the instructors teach.
+
+This kind of time-bounded bootcamp offers many advantages for learning over
+longer courses. For example, they allow the students to focus
 entirely on one topic for an extended period of time. This can be particularly
 useful for material that demands a ``deeper dive'' and intensive, hands-on
-work. It is also particularly useful for topics that attempt to jointly
+work. It is also particularly useful for topics that jointly
 cover both conceptual material and more ``hands-on'' tasks, because the
 condensed time leaves more room for experimentation, discussion, and active
 learning \citep{Bransford2000-lu, Papert1980-fh}. In addition, due to the
-interactive setup students are more likely to work collaboratively and learn
-from each other. Finally, the opt-in nature of these
-courses often ensures that students are more motivated to learn, and their
-proximity both to one another as well as to the instructors makes for a good
-learning environment.
+interactive setup, students are more likely to work collaboratively and learn
+from each other.
 
 However, there are still many challenges associated with this class structure.
 Students interact with material on their own, and their learning experience is
 heavily dependent on the ability of each student to get started in the first
 place. Because the instructional materials are developed on instructor
-computers, differences between instructors' and students' computers (e.g., memory
-available, operating system, etc.) can have hard-to-predict consequences, such
-as slow execution, or even complete failure to execute (e.g. because of the
-missing software dependencies that are not installed in students' computers).
-As these types of courses are often relatively short, small delays can result
-in a significant loss of instructional time.
+computers, differences between the instructor and student computers (e.g., memory
+available, operating system, etc.) can have hard-to-predict consequences such
+as slow execution (e.g., due to sub-par student hardware) or a failure to
+execute code (e.g. because of missing software dependencies on
+students' computers). These types of courses are often relatively short,
+and small delays result in a significant loss of instructional time.
 
-One solution to mitigate many of these challenges is to offload the issue of
+A solution to mitigate many of these challenges is to offload the issue of
 student-specific hardware onto a shared cloud computing platform. This approach
 standardizes the experience of each student by allowing them access to a single
-online resource for the duration of the class.
-
-This article covers our recent experience implementing this approach, using
-advanced cyberinfrastructure to teach a day-long bootcamp in machine learning at
-the University of California in San Francisco. This paper describes the
-technical tool-chain and processes that we used in designing this course. This
-unique design includes hosting the course materials online and
-making them available for students to run through a browser on their own laptops,
-with no additional installation required. We will discuss the challenges in
-implementing this course setup effectively, and discuss its merits and
-drawbacks.
+online resource for the duration of the class, without requiring any new
+software or data to be downloaded on student computers. Students can work
+on course material simultaneously with the instructor and can
+experiment with multiple solutions on their cloud copy of the material,
+creating a more interactive teaching and learning environment. Next we describe
+an implementation of this model at a day-long workshop hosted at the
+University of California, San Francisco.
