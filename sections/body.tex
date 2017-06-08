@@ -8,8 +8,8 @@ single-cell microscopy. Instructors were distributed across three institutions,
 and attendees were mostly graduate students and post-docs that had minimal
 background in data analysis and image processing. The instructors took the
 audience through detailed hands-on data analysis pipelines that harness open
-source software for neural image processing (\url{http://scikit-image.org/}
-\cite{van2014scikit}, \url{http://nipy.org/dipy/}
+source software for neural image processing (\url{http://scikit-image.org}
+\cite{van2014scikit}, \url{http://nipy.org/dipy}
 \cite{Garyfallidis2014FrontNeuroinf}). They also introduced the participants to
 machine learning techniques (e.g., deep learning methods using Caffe
 \cite{jia2014caffe} and Tensorflow \cite{abadi2016tensorflow} as well an
@@ -212,8 +212,9 @@ in computing infrastructures. While there are many available resources to gain a
 understanding of cloud-computing infrastructure, they are often idiosyncratic and
 inaccessible for novice users. Fortunately, many university campuses
 have individuals who are trained in these methods, or have access to experts in
-the community available through the Campus Champion program. In our case, instructors
-worked with our local Campus Champion with cyberinfrastructure expertise in order to set up the Docker images within
+the community available through the Campus Champion program (\url{https://www.xsede.org/web/campus-champions}).
+In our case, instructors worked with our local Campus Champion who had
+cyberinfrastructure expertise in order to set up the Docker images within
 the XSEDE Jetstream environment. In addition, significant development had to go
 into creating and debugging Docker images, particularly early on in the
 development cycle of the class. In the future, it will be important to provide
@@ -228,8 +229,8 @@ commercial cloud computing is that computation time incurs a cost, either
 financial or in the form of an allocation of Service Units (SUs).
 Fortunately, the XSEDE allocation process has a quick
 turnaround for Jetstream Education Allocations with a limit up to 50,000 SUs.
-It is common to receive allocations in the form of grants or free credits
-from commercial cloud providers for educational use, the process is often
+It is also common to receive allocations in the form of grants or free credits
+from commercial cloud providers for educational use, though the process is often
 opaque and not guaranteed.
 
 In the absence of freely-avialable computational resources, it is also
@@ -251,7 +252,7 @@ sustainable developments based on Docker, and a challenge to novices that are
 learning how to deploy course materials for the first time. In order to improve
 the accessibility of this approach for new instructors, it will be crucial to
 minimize the effort required to set up a minimal computational environment with
-Docker. Fortunately the datascience-notebook Docker image maintained by the Jupyter
+Docker. Fortunately the \textit{datascience-notebook} Docker image maintained by the Jupyter
 project provides a good starting point, though more efforts towards streamlining
 this process are needed.
 
@@ -296,17 +297,21 @@ only a Github repository) as well as the credentials for a cloud-based system
 that supports a common platform such as Kubernetes. The platform could then
 support giving a list of usernames / email addresses, and would automatically
 create instances of the learning environment along with their corresponding IP
-addresses. There are several software efforts taking place along these
-lines, including the JupyterHub \cite{perez2015project} and Binder (\url{http://mybinder.org/})
-projects and integrations with Kubernetes Helm Charts (\url{https://github.com/kubernetes/charts}).
-We would hope that in the future the Jetstream Service Provider could provide
-formal support for Kubernetes, since it's underlying system is based on OpenStack
+addresses.
+
+There are several software efforts taking place along these
+lines, including the JupyterHub \cite{perez2015project} and Binder (\url{http://mybinder.org})
+projects. These both use Kubernetes Helm Charts (\url{https://github.com/kubernetes/charts}) to
+facilitate the deployment of interactive computing environments.
+We hope that in the future the Jetstream Service Provider will provide
+formal support for Kubernetes, as its underlying system is based on OpenStack,
 which provides Kubernetes support in recent releases.
-However it should be possible for Jetstream end users to spin up individual VMs
-and install Kubernetes themselves to take advantage of the Helm Chart for JupyterHub
-and integrated with commercial cloud providers called Zero to Jupyterhub
-(\url{https://zero-to-jupyterhub-with-kubernetes.readthedocs.io/en/latest/}
-developed recently by the Jupyter team in collaboration with the Berkeley campus.
+However, it should be possible for Jetstream end users to create individual VMs
+and install Kubernetes themselves to take advantage of the Helm Chart for JupyterHub.
+For instructions on setting up JupyterHub to run on cloud providers that provide
+Kubernetes support, see \textit{Zero to Jupyterhub}
+(\url{https://zero-to-jupyterhub-with-kubernetes.readthedocs.io},
+a guide developed recently by the Jupyter team in collaboration with the Berkeley campus.
 
 \item {\bf Instructional improvements}: Regardless of any changes to hardware
 or software, a collection of instructional materials should be created that
