@@ -8,8 +8,8 @@ single-cell microscopy. Instructors were distributed across three institutions,
 and attendees were mostly graduate students and post-docs that had minimal
 background in data analysis and image processing. The instructors took the
 audience through detailed hands-on data analysis pipelines that harness open
-source software for neural image processing (\url{http://scikit-image.org/}
-\cite{van2014scikit}, \url{http://nipy.org/dipy/}
+source software for neural image processing (\url{http://scikit-image.org}
+\cite{van2014scikit}, \url{http://nipy.org/dipy}
 \cite{Garyfallidis2014FrontNeuroinf}). They also introduced the participants to
 machine learning techniques (e.g., deep learning methods using Caffe
 \cite{jia2014caffe} and Tensorflow \cite{abadi2016tensorflow} as well an
@@ -57,16 +57,16 @@ day before the class, the course Docker image was deployed to several Virtual Ma
 instances being run on the Jetstream cloud computing platform
 \cite{Stewart2015Jetstream}, available through the Extreme Science and
 Engineering Discovery Environment (XSEDE) \cite{Towns2014XSEDE}  (see section
-\ref{sec:methods}). We chose this environment due to its presence on many
+\ref{sec:methods}). We chose this environment due to its availability at no cost to many
 university campuses, though it is possible to use any cloud provider that
-provides Kubernetes support such as Google Cloud, Microsoft Azure, or even
-institutional hardware.
+provides Docker support such as Google Cloud, Microsoft Azure, or even
+bare-metal hardware running a Linux server.
 
 A single IP address was generated for each instance - one
 for each student - and was sent out the morning of the event. Students only
 needed to click on their respective IP address, and they were instantly taken to
-a live Jupyter notebook contained within their XSEDE Jetstream computing
-environment. This notebook had all course materials, as well as access to the
+a live Jupyter notebook contained within their XSEDE Jetstream virtual
+machine. This notebook had all course materials, as well as access to the
 data, software packages, and live Python kernels that were needed to execute the
 course materials. In addition, this environment persisted several days after the
 class was finished in order to allow students to continue interacting with the
@@ -191,9 +191,9 @@ collaboration and reduces the tendency for instructors to repeat efforts.
 Finally, it is worth emphasizing that while this bootcamp used
 the XSEDE cloud platform for managing computational resources (due to its
 presence at many universities in the United States),
-one could utilize any high-level computing platform that runs Kubernetes for managing
-user instances. By utilizing a high-level cloud service (such as XSEDE) built on
-top of lower-level cloud computing technologies (such as Open Stack), the
+one could utilize any computing platform that provides full root access for user instances
+running Docker containers. By utilizing a high-level cloud service (such as XSEDE Jetstream) built on
+top of lower-level cloud computing technologies (such as OpenStack), the
 teaching team required
 minimal setup and expertise in connecting course materials with the resources in the cloud.
 
@@ -207,16 +207,18 @@ future iterations of this approach towards teaching.
 \begin{enumerate}
 
 \item {\bf Team knowledge in cloud-computing infrastructure}: The primary drawback of
-this approach is the necessity of at least one member to have knowledge
+this approach is the necessity of at least one team member to have knowledge
 in computing infrastructures. While there are many available resources to gain an
 understanding of cloud-computing infrastructure, they are often idiosyncratic and
-inaccessible for novice users. Fortunately, most university campuses
-have individuals who are trained in these methods. In our case, instructors
-worked with a campus cyberinfrastructure expert in order to set up the Docker images within
+inaccessible for novice users. Fortunately, many university campuses
+have individuals who are trained in these methods, or have access to experts in
+the community available through the Campus Champion program (\url{https://www.xsede.org/web/campus-champions}).
+In our case, instructors worked with our local Campus Champion who had
+cyberinfrastructure expertise in order to set up the Docker images within
 the XSEDE Jetstream environment. In addition, significant development had to go
 into creating and debugging Docker images, particularly early on in the
 development cycle of the class. In the future, it will be important to provide
-practical guides in interfacing with campus cloud computing architecture, as
+practical guides for accessing and interfacing with campus-supported cloud computing infrastructure, as
 well as a well-explained workflow for how to leverage these resources in
 teaching. There is also opportunity for advances in software to mitigate this
 problem, such as using the JupyterHub \cite{perez2015project} platform
@@ -227,8 +229,9 @@ commercial cloud computing is that computation time incurs a cost, either
 financial or in the form of an allocation of Service Units (SUs).
 Fortunately, the XSEDE allocation process has a quick
 turnaround for Jetstream Education Allocations with a limit up to 50,000 SUs.
-While this is not a guarantee, it is common to receive allocation grants
-from cloud providers for educational events.
+It is also common to receive allocations in the form of grants or free credits
+from commercial cloud providers for educational use, though the process is often
+opaque and not guaranteed.
 
 In the absence of freely-avialable computational resources, it is also
 possible to utilize any cloud platform's standard payment model in order
@@ -249,7 +252,7 @@ sustainable developments based on Docker, and a challenge to novices that are
 learning how to deploy course materials for the first time. In order to improve
 the accessibility of this approach for new instructors, it will be crucial to
 minimize the effort required to set up a minimal computational environment with
-Docker. Fortunately the Jupyter base Docker image maintained by the Jupyter
+Docker. Fortunately the \textit{datascience-notebook} Docker image maintained by the Jupyter
 project provides a good starting point, though more efforts towards streamlining
 this process are needed.
 
@@ -273,7 +276,7 @@ software and computing has been gained, potentially mitigating the frustration
 associated with migrating off of the cloud. Meanwhile, the experience also
 serves to familiarize students with the cloud-computing environment. As a result
 they may be poised to do their own work on cloud-computing environments
-provided by their university (a practice that is increasingly common).
+provided by their university or through XSEDE (a practice that is increasingly common).
 
 \end{enumerate}
 
@@ -281,7 +284,7 @@ provided by their university (a practice that is increasingly common).
 
 With these considerations in mind, we recommend the following tangible
 advancements in order to make this type of cloud-based bootcamp as effective
-as possible
+as possible:
 
 \begin{enumerate}
 
@@ -294,8 +297,21 @@ only a Github repository) as well as the credentials for a cloud-based system
 that supports a common platform such as Kubernetes. The platform could then
 support giving a list of usernames / email addresses, and would automatically
 create instances of the learning environment along with their corresponding IP
-addresses. There are several software efforts taking place along these
-lines, including the JupyterHub \cite{perez2015project} and Binder (\url{http://mybinder.org/}) projects.
+addresses.
+
+There are several software efforts taking place along these
+lines, including the JupyterHub \cite{perez2015project} and Binder (\url{http://mybinder.org})
+projects. These both use Kubernetes Helm Charts (\url{https://github.com/kubernetes/charts}) to
+facilitate the deployment of interactive computing environments.
+We hope that in the future the Jetstream Service Provider will provide
+formal support for Kubernetes, as its underlying system is based on OpenStack,
+which provides Kubernetes support in recent releases.
+However, it should be possible for Jetstream end users to create individual VMs
+and install Kubernetes themselves to take advantage of the Helm Chart for JupyterHub.
+For instructions on setting up JupyterHub to run on cloud providers that provide
+Kubernetes support, see \textit{Zero to Jupyterhub}
+(\url{https://zero-to-jupyterhub-with-kubernetes.readthedocs.io},
+a guide developed recently by the Jupyter team in collaboration with the Berkeley campus.
 
 \item {\bf Instructional improvements}: Regardless of any changes to hardware
 or software, a collection of instructional materials should be created that
@@ -319,7 +335,7 @@ these kinds of container-based bootcamps.
 This project represents a first step towards a flexible and easy way to deploy
 computational environments on cloud platforms for the purposes of teaching
 data analytic methods to scientists. These cloud platforms are generally available
-through national advanced cyberinfrastructure (ACI) as well as on several
+through national advanced cyberinfrastructure (ACI) such as XSEDE, as well as on several
 commercial providers, making it easy to deploy these technologies for
 bootcamp-based pedagogy at many universities around the country.
 
